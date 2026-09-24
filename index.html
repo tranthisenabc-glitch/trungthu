@@ -3,17 +3,26 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no"
+    />
 
     <title>🌕 Chúc Fen Trung Thu 🏮</title>
 
     <style>
-      /* ================= CÀI ĐẶT CHUNG ================= */
+      /* ==================================================
+   RESET
+================================================== */
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
       }
 
       html {
@@ -21,156 +30,172 @@
       }
 
       body {
-        font-family: Arial, sans-serif;
+        width: 100%;
+        min-height: 100vh;
+
+        font-family: Arial, Helvetica, sans-serif;
+
         background: #050313;
         color: white;
+
         overflow-x: hidden;
       }
 
-      /* ================= BẦU TRỜI ================= */
+      /* ==================================================
+   BẦU TRỜI
+================================================== */
 
       #sky {
         position: fixed;
         inset: 0;
-        z-index: -10;
+
+        width: 100%;
+        height: 100%;
+
         overflow: hidden;
 
         background: radial-gradient(
-          circle at 50% 35%,
-          #30266c 0%,
-          #15103d 40%,
-          #070419 75%,
-          #020108 100%
+          circle at 50% 28%,
+          #3a2b75 0%,
+          #191143 38%,
+          #09051f 72%,
+          #03020c 100%
         );
+
+        z-index: -20;
       }
 
-      /* ================= SAO ================= */
+      /* ==================================================
+   SAO
+================================================== */
 
       .star {
         position: absolute;
 
-        width: 3px;
-        height: 3px;
+        width: 2px;
+        height: 2px;
 
         border-radius: 50%;
 
         background: white;
 
-        box-shadow:
-          0 0 8px white,
-          0 0 15px white;
+        box-shadow: 0 0 5px white;
 
-        animation: starBlink 1.5s infinite alternate;
+        animation: twinkle 1.8s infinite alternate;
       }
 
-      @keyframes starBlink {
+      @keyframes twinkle {
         from {
-          opacity: 0.2;
+          opacity: 0.15;
           transform: scale(0.5);
         }
 
         to {
           opacity: 1;
-          transform: scale(1.5);
+          transform: scale(1.4);
         }
       }
 
-      /* ================= TRĂNG ================= */
+      /* ==================================================
+   TRĂNG
+================================================== */
 
       .moon {
         position: absolute;
 
-        top: 65px;
-        right: 10%;
+        width: 145px;
+        height: 145px;
 
-        width: 210px;
-        height: 210px;
+        top: 55px;
+        right: 50%;
+
+        transform: translateX(50%);
 
         border-radius: 50%;
 
         background: radial-gradient(
-          circle at 30% 30%,
-          #fffde1,
-          #fff2a0 50%,
-          #ffd64a 100%
+          circle at 30% 28%,
+          #fffde5,
+          #fff3a7 55%,
+          #ffd84d 100%
         );
 
         box-shadow:
-          0 0 30px #fff5a8,
-          0 0 70px #ffe066,
-          0 0 130px rgba(255, 215, 80, 0.5),
-          0 0 200px rgba(255, 215, 80, 0.2);
+          0 0 20px #fff5ad,
+          0 0 55px #ffd94f,
+          0 0 100px rgba(255, 215, 70, 0.4);
 
         animation: moonGlow 3s infinite alternate;
       }
 
       @keyframes moonGlow {
         from {
-          transform: scale(1);
+          box-shadow:
+            0 0 20px #fff5ad,
+            0 0 55px #ffd94f;
         }
 
         to {
-          transform: scale(1.04);
+          box-shadow:
+            0 0 30px #fff5ad,
+            0 0 85px #ffd94f,
+            0 0 130px rgba(255, 215, 70, 0.4);
         }
       }
 
-      /* ================= HỐ TRÊN MẶT TRĂNG ================= */
+      /* ==================================================
+   HỐ MẶT TRĂNG
+================================================== */
 
       .moon span {
         position: absolute;
 
-        background: rgba(200, 160, 50, 0.15);
-
         border-radius: 50%;
+
+        background: rgba(190, 150, 40, 0.15);
       }
 
       .crater1 {
-        width: 35px;
-        height: 35px;
+        width: 27px;
+        height: 27px;
 
-        top: 45px;
-        left: 55px;
+        left: 38px;
+        top: 35px;
       }
 
       .crater2 {
-        width: 25px;
-        height: 25px;
+        width: 19px;
+        height: 19px;
 
-        top: 110px;
-        left: 125px;
+        left: 88px;
+        top: 72px;
       }
 
       .crater3 {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
 
-        top: 135px;
-        left: 65px;
+        left: 47px;
+        top: 91px;
       }
 
-      .crater4 {
-        width: 15px;
-        height: 15px;
-
-        top: 80px;
-        left: 145px;
-      }
-
-      /* ================= MÂY ================= */
+      /* ==================================================
+   MÂY
+================================================== */
 
       .cloud {
         position: absolute;
 
-        width: 200px;
-        height: 55px;
-
-        background: rgba(255, 255, 255, 0.08);
+        width: 160px;
+        height: 40px;
 
         border-radius: 50px;
 
+        background: rgba(255, 255, 255, 0.06);
+
         filter: blur(2px);
 
-        animation: cloudMove 30s linear infinite;
+        animation: cloudMove 28s linear infinite;
       }
 
       .cloud:before,
@@ -179,66 +204,68 @@
 
         position: absolute;
 
-        background: inherit;
-
         border-radius: 50%;
+
+        background: inherit;
       }
 
       .cloud:before {
-        width: 75px;
-        height: 75px;
+        width: 55px;
+        height: 55px;
 
-        left: 35px;
-        bottom: 10px;
+        left: 25px;
+        bottom: 7px;
       }
 
       .cloud:after {
-        width: 90px;
-        height: 90px;
+        width: 65px;
+        height: 65px;
 
-        right: 25px;
+        right: 20px;
         bottom: 5px;
       }
 
       .cloud1 {
-        top: 180px;
-        left: -250px;
+        top: 205px;
+        left: -200px;
       }
 
       .cloud2 {
         top: 350px;
-        left: -500px;
+        left: -300px;
 
-        animation-delay: 8s;
+        animation-delay: 10s;
 
         transform: scale(0.7);
       }
 
       @keyframes cloudMove {
         from {
-          transform: translateX(-300px);
+          transform: translateX(-250px);
         }
 
         to {
-          transform: translateX(calc(100vw + 500px));
+          transform: translateX(calc(100vw + 300px));
         }
       }
 
-      /* ================= ĐÈN LỒNG ================= */
+      /* ==================================================
+   ĐÈN LỒNG
+================================================== */
 
       .lantern {
         position: absolute;
 
-        width: 55px;
-        height: 75px;
+        width: 42px;
+        height: 58px;
 
         border-radius: 45% 45% 50% 50%;
 
-        background: linear-gradient(90deg, #8d0016, #ff3344, #8d0016);
+        background: linear-gradient(90deg, #800014, #ff3448, #800014);
 
         box-shadow:
-          0 0 20px #ff3344,
-          0 0 50px rgba(255, 40, 60, 0.5);
+          0 0 15px #ff3045,
+          0 0 35px rgba(255, 40, 60, 0.45);
 
         animation: lanternFloat 4s ease-in-out infinite;
       }
@@ -248,22 +275,22 @@
 
         position: absolute;
 
-        top: 13px;
-        left: 9px;
+        top: 9px;
+        left: 5px;
 
-        font-size: 35px;
+        font-size: 28px;
 
-        filter: drop-shadow(0 0 10px #ffd83d);
+        filter: drop-shadow(0 0 7px #ffd43d);
       }
 
       .lantern1 {
-        left: 6%;
-        top: 25%;
+        left: 4%;
+        top: 22%;
       }
 
       .lantern2 {
-        left: 20%;
-        top: 60%;
+        left: 7%;
+        top: 58%;
 
         transform: scale(0.7);
 
@@ -271,17 +298,17 @@
       }
 
       .lantern3 {
-        right: 20%;
-        top: 22%;
+        right: 4%;
+        top: 24%;
 
-        transform: scale(0.8);
+        transform: scale(0.75);
 
         animation-delay: 2s;
       }
 
       .lantern4 {
         right: 7%;
-        top: 58%;
+        top: 62%;
 
         transform: scale(0.65);
 
@@ -295,13 +322,16 @@
         }
 
         50% {
-          transform: translateY(-35px) rotate(4deg);
+          transform: translateY(-25px) rotate(4deg);
         }
       }
 
-      /* ================= KHUNG TRANG ================= */
+      /* ==================================================
+   KHUNG CHÍNH
+================================================== */
 
       .page {
+        width: 100%;
         min-height: 100vh;
 
         display: flex;
@@ -309,61 +339,118 @@
         justify-content: center;
         align-items: center;
 
-        padding: 30px 15px;
+        padding: 20px 12px;
       }
 
-      /* ================= CARD ================= */
+      /* ==================================================
+   CARD
+================================================== */
 
       .card {
-        width: min(900px, 95%);
+        width: 100%;
+        max-width: 600px;
 
-        padding: 50px 35px;
+        min-height: 500px;
 
-        text-align: center;
+        padding: 35px 18px;
 
-        border-radius: 30px;
+        display: flex;
 
-        background: rgba(12, 8, 42, 0.78);
+        align-items: center;
+        justify-content: center;
 
-        backdrop-filter: blur(15px);
+        border-radius: 28px;
 
-        border: 1px solid rgba(255, 220, 100, 0.3);
+        background: rgba(10, 7, 35, 0.76);
+
+        backdrop-filter: blur(12px);
+
+        -webkit-backdrop-filter: blur(12px);
+
+        border: 1px solid rgba(255, 220, 100, 0.25);
 
         box-shadow:
-          0 0 40px rgba(255, 190, 30, 0.15),
-          inset 0 0 40px rgba(255, 255, 255, 0.03);
+          0 0 35px rgba(255, 190, 40, 0.12),
+          inset 0 0 30px rgba(255, 255, 255, 0.025);
 
-        animation: cardAppear 1.2s ease;
+        overflow: hidden;
       }
 
-      @keyframes cardAppear {
+      /* ==================================================
+   SCREEN
+================================================== */
+
+      .screen {
+        width: 100%;
+
+        display: none;
+
+        text-align: center;
+      }
+
+      .screen.active {
+        display: block;
+
+        animation: screenIn 0.7s ease;
+      }
+
+      @keyframes screenIn {
         from {
           opacity: 0;
 
-          transform: translateY(50px) scale(0.9);
+          transform: scale(0.94) translateY(20px);
         }
 
         to {
           opacity: 1;
 
-          transform: translateY(0) scale(1);
+          transform: scale(1) translateY(0);
         }
       }
 
-      /* ================= TIÊU ĐỀ ================= */
+      /* ==================================================
+   ICON TRÊN ĐẦU
+================================================== */
+
+      .top-icon {
+        font-size: 48px;
+
+        margin-bottom: 12px;
+
+        animation: iconFloat 2s infinite ease-in-out;
+      }
+
+      @keyframes iconFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      /* ==================================================
+   TIÊU ĐỀ
+================================================== */
 
       h1 {
-        font-size: clamp(40px, 8vw, 80px);
+        width: 100%;
+
+        font-size: clamp(38px, 11vw, 68px);
 
         line-height: 1.05;
 
+        letter-spacing: -1px;
+
         background: linear-gradient(
           90deg,
-          #fff5ad,
-          #ffd43b,
-          #fff,
-          #ffd43b,
-          #fff5ad
+          #fff6ad,
+          #ffd32e,
+          #ffffff,
+          #ffd32e,
+          #fff6ad
         );
 
         background-size: 300%;
@@ -374,7 +461,7 @@
 
         animation: titleMove 4s linear infinite;
 
-        filter: drop-shadow(0 0 15px rgba(255, 210, 60, 0.7));
+        filter: drop-shadow(0 0 12px rgba(255, 215, 60, 0.65));
       }
 
       @keyframes titleMove {
@@ -387,140 +474,125 @@
         }
       }
 
-      /* ================= PHỤ ĐỀ ================= */
-
-      .subtitle {
-        margin-top: 25px;
-
-        font-size: 19px;
-
-        line-height: 1.8;
-
-        color: #ffeeb0;
-      }
-
-      /* ================= ĐƯỜNG NGĂN ================= */
+      /* ==================================================
+   DIVIDER
+================================================== */
 
       .divider {
-        width: 220px;
+        width: 150px;
+        height: 2px;
 
-        height: 3px;
-
-        margin: 30px auto;
+        margin: 22px auto;
 
         background: linear-gradient(90deg, transparent, #ffd43b, transparent);
 
-        box-shadow: 0 0 15px #ffd43b;
+        box-shadow: 0 0 12px #ffd43b;
       }
 
-      /* ================= MÀN HÌNH ================= */
+      /* ==================================================
+   ĐOẠN VĂN
+================================================== */
 
-      .screen {
-        display: none;
+      .subtitle {
+        padding: 0 5px;
+
+        font-size: 16px;
+
+        line-height: 1.8;
+
+        color: #ffefb2;
       }
 
-      .screen.active {
-        display: block;
+      /* ==================================================
+   LỜI CHÚC
+================================================== */
 
-        animation: screenIn 0.8s ease;
+      .wish {
+        width: 100%;
+
+        margin: 10px auto;
+
+        padding: 15px 13px;
+
+        border-radius: 17px;
+
+        background: rgba(255, 255, 255, 0.055);
+
+        border: 1px solid rgba(255, 220, 100, 0.14);
+
+        font-size: 15px;
+
+        line-height: 1.65;
+
+        color: #fff3c2;
       }
 
-      @keyframes screenIn {
-        from {
-          opacity: 0;
-
-          transform: scale(0.85) translateY(30px);
-        }
-
-        to {
-          opacity: 1;
-
-          transform: scale(1) translateY(0);
-        }
-      }
-
-      /* ================= NÚT ================= */
+      /* ==================================================
+   NÚT
+================================================== */
 
       .buttons {
+        width: 100%;
+
         display: flex;
 
         justify-content: center;
 
+        align-items: center;
+
         flex-wrap: wrap;
 
-        gap: 15px;
+        gap: 10px;
 
-        margin-top: 35px;
+        margin-top: 25px;
       }
 
       button {
-        border: none;
+        min-height: 48px;
 
-        padding: 15px 25px;
+        padding: 13px 20px;
+
+        border: none;
 
         border-radius: 50px;
 
-        cursor: pointer;
+        background: linear-gradient(135deg, #fff0a1, #ffc928);
 
-        font-size: 16px;
+        color: #351b00;
+
+        font-size: 15px;
 
         font-weight: bold;
 
-        color: #321900;
+        cursor: pointer;
 
-        background: linear-gradient(135deg, #fff0a0, #ffc928);
+        box-shadow: 0 0 18px rgba(255, 210, 60, 0.3);
 
-        box-shadow: 0 0 20px rgba(255, 210, 60, 0.35);
-
-        transition: 0.3s;
-      }
-
-      button:hover {
-        transform: translateY(-5px) scale(1.07);
-
-        box-shadow: 0 0 40px rgba(255, 210, 60, 0.8);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
       }
 
       button:active {
-        transform: scale(0.9);
+        transform: scale(0.92);
+
+        box-shadow: 0 0 30px rgba(255, 210, 60, 0.7);
       }
 
-      /* ================= LỜI CHÚC ================= */
-
-      .wish {
-        margin: 15px auto;
-
-        max-width: 700px;
-
-        padding: 20px;
-
-        border-radius: 20px;
-
-        background: rgba(255, 255, 255, 0.05);
-
-        border: 1px solid rgba(255, 220, 100, 0.15);
-
-        line-height: 1.7;
-
-        transition: 0.3s;
-      }
-
-      .wish:hover {
-        transform: translateX(10px) scale(1.02);
-
-        background: rgba(255, 210, 70, 0.1);
-
-        box-shadow: 0 0 25px rgba(255, 210, 70, 0.1);
-      }
-
-      /* ================= HỘP QUÀ ================= */
+      /* ==================================================
+   HỘP QUÀ
+================================================== */
 
       .gift {
-        font-size: 110px;
+        display: block;
+
+        width: max-content;
+
+        margin: 15px auto;
+
+        font-size: 90px;
 
         cursor: pointer;
-
-        display: inline-block;
 
         animation: giftShake 1.3s infinite;
       }
@@ -532,37 +604,37 @@
         }
 
         25% {
-          transform: rotate(-10deg);
+          transform: rotate(-9deg);
         }
 
         75% {
-          transform: rotate(10deg);
+          transform: rotate(9deg);
         }
       }
 
       .secret {
         display: none;
 
-        margin-top: 25px;
+        padding: 0 5px;
 
-        font-size: 21px;
+        font-size: 17px;
 
         line-height: 1.8;
 
-        color: #ffe989;
+        color: #ffe98b;
       }
 
       .secret.show {
         display: block;
 
-        animation: secretIn 1s ease;
+        animation: secretIn 0.8s ease;
       }
 
       @keyframes secretIn {
         from {
           opacity: 0;
 
-          transform: scale(0.3);
+          transform: scale(0.6);
         }
 
         to {
@@ -572,13 +644,15 @@
         }
       }
 
-      /* ================= PHÁO HOA ================= */
+      /* ==================================================
+   PHÁO HOA
+================================================== */
 
       .firework {
         position: fixed;
 
-        width: 5px;
-        height: 5px;
+        width: 4px;
+        height: 4px;
 
         border-radius: 50%;
 
@@ -586,23 +660,25 @@
 
         pointer-events: none;
 
-        z-index: 100;
+        z-index: 1000;
 
         box-shadow:
           0 0 8px white,
           0 0 15px white;
       }
 
-      /* ================= SPARKLE ================= */
+      /* ==================================================
+   SPARKLE
+================================================== */
 
       .sparkle {
         position: fixed;
 
         pointer-events: none;
 
-        z-index: 500;
+        z-index: 1500;
 
-        font-size: 20px;
+        font-size: 17px;
 
         animation: sparkleOut 1s forwards;
       }
@@ -617,67 +693,112 @@
         to {
           opacity: 0;
 
-          transform: scale(2) translateY(-60px);
+          transform: scale(1.8) translateY(-45px);
         }
       }
 
-      /* ================= NÚT NHẠC ================= */
+      /* ==================================================
+   NÚT NHẠC
+================================================== */
 
       .music {
         position: fixed;
 
-        right: 20px;
+        right: 12px;
+        bottom: 12px;
 
-        bottom: 20px;
-
-        z-index: 1000;
+        z-index: 2000;
       }
 
-      /* ================= FOOTER ================= */
+      .music button {
+        min-height: 44px;
+
+        padding: 11px 16px;
+
+        font-size: 13px;
+
+        box-shadow: 0 0 20px rgba(255, 210, 60, 0.45);
+      }
+
+      /* ==================================================
+   FOOTER
+================================================== */
 
       .footer {
-        margin-top: 30px;
+        margin-top: 25px;
 
-        color: #aaa;
+        font-size: 12px;
 
-        font-size: 14px;
+        color: #999;
       }
 
-      /* ================= MOBILE ================= */
+      /* ==================================================
+   ĐIỆN THOẠI RẤT NHỎ
+================================================== */
 
-      @media (max-width: 600px) {
-        .moon {
-          width: 120px;
-          height: 120px;
-
-          right: 6%;
-          top: 50px;
+      @media (max-width: 380px) {
+        .page {
+          padding: 12px 8px;
         }
 
         .card {
-          padding: 35px 20px;
+          padding: 28px 14px;
+
+          min-height: 520px;
+
+          border-radius: 24px;
+        }
+
+        .moon {
+          width: 115px;
+          height: 115px;
+
+          top: 48px;
         }
 
         .subtitle {
-          font-size: 16px;
+          font-size: 15px;
         }
 
-        .lantern {
-          transform: scale(0.6);
+        .wish {
+          font-size: 14px;
+
+          padding: 13px 10px;
+        }
+
+        button {
+          width: 100%;
+
+          min-height: 47px;
+        }
+
+        .gift {
+          font-size: 78px;
+        }
+      }
+
+      /* ==================================================
+   MÀN HÌNH CAO
+================================================== */
+
+      @media (max-width: 600px) and (min-height: 750px) {
+        .card {
+          min-height: 560px;
         }
       }
     </style>
   </head>
 
   <body>
-    <!-- ================= BẦU TRỜI ================= -->
+    <!-- ==================================================
+     BẦU TRỜI
+================================================== -->
 
     <div id="sky">
       <div class="moon">
         <span class="crater1"></span>
         <span class="crater2"></span>
         <span class="crater3"></span>
-        <span class="crater4"></span>
       </div>
 
       <div class="cloud cloud1"></div>
@@ -693,17 +814,20 @@
       <div class="lantern lantern4"></div>
     </div>
 
-    <!-- ================= NỘI DUNG ================= -->
+    <!-- ==================================================
+     NỘI DUNG
+================================================== -->
 
     <section class="page">
       <div class="card">
-        <!-- ===== TRANG 1 ===== -->
+        <!-- ================= TRANG 1 ================= -->
 
         <div id="screen1" class="screen active">
-          <div style="font-size: 55px">🌕🏮✨</div>
+          <div class="top-icon">🌕🏮✨</div>
 
           <h1>
-            CHÚC FEN<br />
+            CHÚC FEN
+            <br />
             TRUNG THU
           </h1>
 
@@ -714,11 +838,11 @@
 
             <br /><br />
 
-            Không cần điều gì quá to tát,
+            Không cần điều gì quá to tát.
 
             <br />
 
-            chỉ cần fen vui,
+            Chỉ cần fen vui,
 
             <br />
 
@@ -730,25 +854,29 @@
           </p>
 
           <div class="buttons">
-            <button onclick="nextScreen(2)">🏮 Bắt đầu</button>
+            <button onclick="nextScreen(2)">🏮 BẮT ĐẦU</button>
           </div>
         </div>
 
-        <!-- ===== TRANG 2 ===== -->
+        <!-- ================= TRANG 2 ================= -->
 
         <div id="screen2" class="screen">
-          <div style="font-size: 65px">🌕🐇</div>
+          <div class="top-icon">🌕🐇</div>
 
-          <h1>ĐÊM TRĂNG CỦA FEN</h1>
+          <h1>
+            ĐÊM TRĂNG
+            <br />
+            CỦA FEN
+          </h1>
 
           <div class="divider"></div>
 
           <p class="subtitle">
             Trăng hôm nay có thể rất sáng...
 
-            <br />
+            <br /><br />
 
-            nhưng mong rằng
+            Nhưng mong rằng
 
             <br />
 
@@ -760,7 +888,7 @@
 
             <br /><br />
 
-            Bánh Trung Thu thì có thể chia nhau,
+            Bánh Trung Thu có thể chia nhau,
 
             <br />
 
@@ -772,26 +900,28 @@
           </p>
 
           <div class="buttons">
-            <button onclick="nextScreen(1)">⬅ Quay lại</button>
+            <button onclick="nextScreen(1)">⬅ QUAY LẠI</button>
 
-            <button onclick="nextScreen(3)">Tiếp tục ➜</button>
+            <button onclick="nextScreen(3)">TIẾP TỤC ➜</button>
           </div>
         </div>
 
-        <!-- ===== TRANG 3 ===== -->
+        <!-- ================= TRANG 3 ================= -->
 
         <div id="screen3" class="screen">
-          <div style="font-size: 60px">💌</div>
+          <div class="top-icon">💌</div>
 
-          <h1>GỬI FEN VÀI LỜI</h1>
+          <h1>
+            GỬI FEN
+            <br />
+            VÀI LỜI
+          </h1>
 
           <div class="divider"></div>
 
           <div class="wish">
             🌕 Chúc fen một mùa Trung Thu
-
             <b>vui vẻ, bình an</b>
-
             và thật nhiều tiếng cười.
           </div>
 
@@ -801,28 +931,32 @@
           </div>
 
           <div class="wish">
-            🥮 Chúc fen ăn mãi không béo :ngược lại thì hay hơn:)), ngủ không
-            muộn, học không áp lực và ngày nào cũng có chuyện vui. 😂
+            🥮 Chúc fen ăn nhiều hơn tru(bớt bỏ bữa) đi chơi vui vỉa, ngủ thật
+            ngon và mỗi ngày đều có chuyện vui. 😂
           </div>
 
           <div class="wish">
-            ✨ Mong rằng những điều fen đang cố gắng hôm nay sẽ trở thành những
-            điều khiến fen tự hào trong tương lai.
+            ✨ Mong những điều fen đang cố gắng hôm nay sẽ trở thành những điều
+            khiến fen tự hào trong tương lai.
           </div>
 
           <div class="buttons">
-            <button onclick="nextScreen(2)">⬅ Quay lại</button>
+            <button onclick="nextScreen(2)">⬅ QUAY LẠI</button>
 
-            <button onclick="nextScreen(4)">🎁 Có quà nè</button>
+            <button onclick="nextScreen(4)">🎁 CÓ QUÀ</button>
           </div>
         </div>
 
-        <!-- ===== TRANG 4 ===== -->
+        <!-- ================= TRANG 4 ================= -->
 
         <div id="screen4" class="screen">
-          <div style="font-size: 30px">🎁✨🎁</div>
+          <div class="top-icon">🎁✨</div>
 
-          <h1>MỞ QUÀ ĐI FEN</h1>
+          <h1>
+            MỞ QUÀ
+            <br />
+            ĐI FEN
+          </h1>
 
           <div class="divider"></div>
 
@@ -857,19 +991,15 @@
 
             <br />
 
-            và có thật nhiều khoảnh khắc
-
-            <br />
-
-            đáng nhớ trong kỳ quân sự này nhé:)).
+            và có thật nhiều khoảnh khắc đáng nhớ.
 
             <br /><br />
 
-            🥮 Ăn bánh ngon nhé!
+            🥮 Ăn bánh ngon nhé!(nếu có ngừi tặng:)))
 
             <br />
 
-            🏮 Đi chơi vui nhé!
+            🏮 Đi chơi vui nhé!(quên bị nhốt rồi mà nhở)
 
             <br />
 
@@ -877,18 +1007,18 @@
           </div>
 
           <div class="buttons">
-            <button onclick="nextScreen(3)">⬅ Quay lại</button>
+            <button onclick="nextScreen(3)">⬅ QUAY LẠI</button>
 
-            <button onclick="fireworkShow()">🎆 BẮN PHÁO HOA</button>
+            <button onclick="fireworkShow()">🎆 PHÁO HOA</button>
 
-            <button onclick="nextScreen(5)">➜ Tiếp tục</button>
+            <button onclick="nextScreen(5)">➜ TIẾP</button>
           </div>
         </div>
 
-        <!-- ===== TRANG 5 ===== -->
+        <!-- ================= TRANG 5 ================= -->
 
         <div id="screen5" class="screen">
-          <div style="font-size: 65px">🌌🎆🌕</div>
+          <div class="top-icon">🌌🎆🌕</div>
 
           <h1>
             CHÚC FEN
@@ -903,13 +1033,9 @@
 
             <br /><br />
 
-            Nhưng hy vọng những điều tốt đẹp trong đêm nay sẽ ở lại thật lâu.
+            Nhưng hy vọng những điều tốt đẹp trong hôm nay sẽ ở lại thật lâu.
 
             <br /><br />
-
-            Chúc fen:
-
-            <br />
 
             ❤️ Luôn vui
 
@@ -919,34 +1045,36 @@
 
             <br />
 
-            🏮 Luôn có người bên cạnh
+            🏮 Luôn có những người khiến fen mỉm cười
 
             <br />
 
-            🌕 Và luôn có những ngày thật đáng nhớ.
+            🌕 Và luôn có những ngày thật đáng nhớ trong trại giam qs:)) .
 
             <br /><br />
 
-            <b> TRUNG THU VUI VẺ NHÉ FEN! 🥮🏮🌕 </b>
+            <b> TRUNG THU VUI VẺ NHÉ CỐT! 🥮 </b>
           </p>
 
-          <div style="font-size: 45px; margin: 30px 0">🌕 🏮 🥮 🐇 🎆 ✨</div>
+          <div style="font-size: 38px; margin: 25px 0">🌕🏮🥮🐇🎆✨</div>
 
           <div class="buttons">
-            <button onclick="nextScreen(1)">🔄 Xem lại</button>
+            <button onclick="nextScreen(1)">🔄 XEM LẠI</button>
 
-            <button onclick="megaFirework()">🎆 ĐẠI PHÁO HOA</button>
+            <button onclick="megaFirework()">🎆 SIÊU NHÌU PHÁO HOA</button>
           </div>
 
-          <div class="footer">Made with ❤️ dành tặng fen</div>
+          <div class="footer">Made dành tặng fen</div>
         </div>
       </div>
     </section>
 
-    <!-- ================= NHẠC ================= -->
+    <!-- ==================================================
+     NHẠC
+================================================== -->
 
     <div class="music">
-      <button onclick="toggleMusic()" id="musicBtn">🎵 Bật nhạc</button>
+      <button id="musicBtn" onclick="toggleMusic()">🎵 BẬT NHẠC</button>
     </div>
 
     <audio id="music" loop>
@@ -957,9 +1085,11 @@
     </audio>
 
     <script>
-      /* ================= TẠO SAO ================= */
+      /* ==================================================
+   TẠO SAO
+================================================== */
 
-      for (let i = 0; i < 180; i++) {
+      for (let i = 0; i < 130; i++) {
         let star = document.createElement("div");
 
         star.className = "star";
@@ -973,7 +1103,9 @@
         document.getElementById("sky").appendChild(star);
       }
 
-      /* ================= CHUYỂN TRANG ================= */
+      /* ==================================================
+   CHUYỂN TRANG
+================================================== */
 
       function nextScreen(number) {
         document.querySelectorAll(".screen").forEach(function (screen) {
@@ -985,10 +1117,12 @@
         createSparkles(window.innerWidth / 2, window.innerHeight / 2);
       }
 
-      /* ================= SPARKLE ================= */
+      /* ==================================================
+   HIỆU ỨNG SPARKLE
+================================================== */
 
       function createSparkles(x, y) {
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 20; i++) {
           let sparkle = document.createElement("div");
 
           sparkle.className = "sparkle";
@@ -997,9 +1131,9 @@
             Math.floor(Math.random() * 5)
           ];
 
-          sparkle.style.left = x + (Math.random() * 200 - 100) + "px";
+          sparkle.style.left = x + (Math.random() * 150 - 75) + "px";
 
-          sparkle.style.top = y + (Math.random() * 150 - 75) + "px";
+          sparkle.style.top = y + (Math.random() * 120 - 60) + "px";
 
           document.body.appendChild(sparkle);
 
@@ -1009,10 +1143,12 @@
         }
       }
 
-      /* ================= CLICK EFFECT ================= */
+      /* ==================================================
+   CLICK EFFECT
+================================================== */
 
       document.addEventListener("click", function (e) {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 6; i++) {
           let sparkle = document.createElement("div");
 
           sparkle.className = "sparkle";
@@ -1021,9 +1157,9 @@
             Math.floor(Math.random() * 4)
           ];
 
-          sparkle.style.left = e.clientX + (Math.random() * 60 - 30) + "px";
+          sparkle.style.left = e.clientX + (Math.random() * 50 - 25) + "px";
 
-          sparkle.style.top = e.clientY + (Math.random() * 60 - 30) + "px";
+          sparkle.style.top = e.clientY + (Math.random() * 50 - 25) + "px";
 
           document.body.appendChild(sparkle);
 
@@ -1033,12 +1169,12 @@
         }
       });
 
-      /* ================= PHÁO HOA ================= */
+      /* ==================================================
+   TẠO PHÁO HOA
+================================================== */
 
       function createFirework(x, y) {
-        /* HẠT PHÁO HOA */
-
-        for (let i = 0; i < 90; i++) {
+        for (let i = 0; i < 70; i++) {
           let particle = document.createElement("div");
 
           particle.className = "firework";
@@ -1049,13 +1185,13 @@
 
           let angle = Math.random() * Math.PI * 2;
 
-          let distance = 70 + Math.random() * 260;
+          let distance = 50 + Math.random() * 180;
 
           let dx = Math.cos(angle) * distance;
 
           let dy = Math.sin(angle) * distance;
 
-          let size = 2 + Math.random() * 5;
+          let size = 2 + Math.random() * 4;
 
           particle.style.width = size + "px";
 
@@ -1077,7 +1213,7 @@
             ],
 
             {
-              duration: 900 + Math.random() * 1200,
+              duration: 800 + Math.random() * 1000,
 
               easing: "cubic-bezier(.1,.7,.2,1)",
             },
@@ -1087,94 +1223,45 @@
 
           setTimeout(() => {
             particle.remove();
-          }, 2200);
-        }
-
-        /* TIA SÁNG */
-
-        for (let i = 0; i < 18; i++) {
-          let spark = document.createElement("div");
-
-          spark.innerHTML = "✨";
-
-          spark.style.position = "fixed";
-
-          spark.style.left = x + "px";
-
-          spark.style.top = y + "px";
-
-          spark.style.fontSize = 12 + Math.random() * 22 + "px";
-
-          spark.style.pointerEvents = "none";
-
-          spark.style.zIndex = "300";
-
-          let angle = Math.random() * Math.PI * 2;
-
-          let distance = 50 + Math.random() * 130;
-
-          spark.animate(
-            [
-              {
-                transform: "translate(-50%,-50%) scale(1)",
-
-                opacity: 1,
-              },
-
-              {
-                transform: `translate(
-                        ${Math.cos(angle) * distance}px,
-                        ${Math.sin(angle) * distance}px
-                    ) scale(0)`,
-
-                opacity: 0,
-              },
-            ],
-
-            {
-              duration: 700 + Math.random() * 700,
-
-              easing: "ease-out",
-            },
-          );
-
-          document.body.appendChild(spark);
-
-          setTimeout(() => {
-            spark.remove();
-          }, 1500);
+          }, 2000);
         }
       }
 
-      /* ================= BẮN NHIỀU PHÁO ================= */
+      /* ==================================================
+   BẮN PHÁO HOA
+================================================== */
 
       function fireworkShow() {
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 35; i++) {
           setTimeout(() => {
             createFirework(
-              50 + Math.random() * (window.innerWidth - 100),
+              30 + Math.random() * (window.innerWidth - 60),
+
+              80 + Math.random() * (window.innerHeight * 0.5),
+            );
+          }, i * 100);
+        }
+      }
+
+      /* ==================================================
+   ĐẠI PHÁO HOA
+================================================== */
+
+      function megaFirework() {
+        for (let i = 0; i < 90; i++) {
+          setTimeout(() => {
+            createFirework(
+              25 + Math.random() * (window.innerWidth - 50),
 
               70 + Math.random() * (window.innerHeight * 0.55),
             );
-          }, i * 90);
+          }, i * 70);
         }
       }
 
-      /* ================= ĐẠI PHÁO HOA ================= */
-
-      function megaFirework() {
-        for (let i = 0; i < 150; i++) {
-          setTimeout(() => {
-            createFirework(
-              40 + Math.random() * (window.innerWidth - 80),
-
-              60 + Math.random() * (window.innerHeight * 0.6),
-            );
-          }, i * 55);
-        }
-      }
-
-      /* ================= MỞ QUÀ ================= */
+      /* ==================================================
+   MỞ QUÀ
+================================================== */
 
       function openGift() {
         document.getElementById("secret").classList.add("show");
@@ -1184,37 +1271,43 @@
         createManySparkles();
       }
 
-      /* ================= NHIỀU SPARKLE ================= */
+      /* ==================================================
+   NHIỀU SPARKLE
+================================================== */
 
       function createManySparkles() {
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 70; i++) {
           setTimeout(() => {
             createSparkles(
               Math.random() * window.innerWidth,
 
               Math.random() * window.innerHeight,
             );
-          }, i * 25);
+          }, i * 30);
         }
       }
 
-      /* ================= PHÁO HOA TỰ ĐỘNG ================= */
+      /* ==================================================
+   PHÁO HOA TỰ ĐỘNG
+================================================== */
 
       setInterval(() => {
-        let soPhao = 2 + Math.floor(Math.random() * 4);
+        let soPhao = 1 + Math.floor(Math.random() * 3);
 
         for (let i = 0; i < soPhao; i++) {
           setTimeout(() => {
             createFirework(
-              50 + Math.random() * (window.innerWidth - 100),
+              30 + Math.random() * (window.innerWidth - 60),
 
-              70 + Math.random() * (window.innerHeight * 0.5),
+              80 + Math.random() * (window.innerHeight * 0.45),
             );
-          }, i * 180);
+          }, i * 250);
         }
-      }, 1200);
+      }, 1800);
 
-      /* ================= NHẠC ================= */
+      /* ==================================================
+   NHẠC
+================================================== */
 
       let music = document.getElementById("music");
 
@@ -1226,13 +1319,13 @@
 
           playing = true;
 
-          document.getElementById("musicBtn").innerHTML = "🔇 Tắt nhạc";
+          document.getElementById("musicBtn").innerHTML = "🔇 TẮT NHẠC";
         } else {
           music.pause();
 
           playing = false;
 
-          document.getElementById("musicBtn").innerHTML = "🎵 Bật nhạc";
+          document.getElementById("musicBtn").innerHTML = "🎵 BẬT NHẠC";
         }
       }
     </script>
