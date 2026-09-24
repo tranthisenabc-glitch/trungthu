@@ -1,1334 +1,1663 @@
-```html
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no"
-    />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
-    <title>🌕 Chúc Fen Trung Thu 🏮</title>
+<title>🌕 Chúc Fen Trung Thu 🏮</title>
 
-    <style>
-      /* ==================================================
-   RESET
-================================================== */
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-      }
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
 
-      html {
-        scroll-behavior: smooth;
-      }
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
+    background:#030315;
+}
 
-      body {
-        width: 100%;
-        min-height: 100vh;
+/* ================= BẦU TRỜI ================= */
 
-        font-family: Arial, Helvetica, sans-serif;
+#sky{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 25%,#453383 0%,#1c1550 32%,#09072b 65%,#02020d 100%);
+    z-index:-10;
+}
 
-        background: #050313;
-        color: white;
+#stars{
+    position:absolute;
+    inset:0;
+}
 
-        overflow-x: hidden;
-      }
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 7px white;
+    animation:twinkle 1.5s infinite alternate;
+}
 
-      /* ==================================================
-   BẦU TRỜI
-================================================== */
+@keyframes twinkle{
+    from{
+        opacity:.15;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
 
-      #sky {
-        position: fixed;
-        inset: 0;
+/* ================= TRĂNG ================= */
 
-        width: 100%;
-        height: 100%;
+.moon{
+    position:absolute;
+    width:135px;
+    height:135px;
+    top:35px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:50%;
 
-        overflow: hidden;
-
-        background: radial-gradient(
-          circle at 50% 28%,
-          #3a2b75 0%,
-          #191143 38%,
-          #09051f 72%,
-          #03020c 100%
+    background:
+        radial-gradient(
+            circle at 30% 28%,
+            #fffef0,
+            #fff3a7 55%,
+            #ffd43b
         );
 
-        z-index: -20;
-      }
+    box-shadow:
+        0 0 25px #fff5a8,
+        0 0 70px #ffd84c,
+        0 0 120px rgba(255,210,50,.35);
 
-      /* ==================================================
-   SAO
-================================================== */
+    animation:moonGlow 3s infinite alternate;
+}
 
-      .star {
-        position: absolute;
-
-        width: 2px;
-        height: 2px;
-
-        border-radius: 50%;
-
-        background: white;
-
-        box-shadow: 0 0 5px white;
-
-        animation: twinkle 1.8s infinite alternate;
-      }
-
-      @keyframes twinkle {
-        from {
-          opacity: 0.15;
-          transform: scale(0.5);
-        }
-
-        to {
-          opacity: 1;
-          transform: scale(1.4);
-        }
-      }
-
-      /* ==================================================
-   TRĂNG
-================================================== */
-
-      .moon {
-        position: absolute;
-
-        width: 145px;
-        height: 145px;
-
-        top: 55px;
-        right: 50%;
-
-        transform: translateX(50%);
-
-        border-radius: 50%;
-
-        background: radial-gradient(
-          circle at 30% 28%,
-          #fffde5,
-          #fff3a7 55%,
-          #ffd84d 100%
-        );
-
+@keyframes moonGlow{
+    from{
         box-shadow:
-          0 0 20px #fff5ad,
-          0 0 55px #ffd94f,
-          0 0 100px rgba(255, 215, 70, 0.4);
+        0 0 20px #fff5a8,
+        0 0 50px #ffd84c;
+    }
 
-        animation: moonGlow 3s infinite alternate;
-      }
-
-      @keyframes moonGlow {
-        from {
-          box-shadow:
-            0 0 20px #fff5ad,
-            0 0 55px #ffd94f;
-        }
-
-        to {
-          box-shadow:
-            0 0 30px #fff5ad,
-            0 0 85px #ffd94f,
-            0 0 130px rgba(255, 215, 70, 0.4);
-        }
-      }
-
-      /* ==================================================
-   HỐ MẶT TRĂNG
-================================================== */
-
-      .moon span {
-        position: absolute;
-
-        border-radius: 50%;
-
-        background: rgba(190, 150, 40, 0.15);
-      }
-
-      .crater1 {
-        width: 27px;
-        height: 27px;
-
-        left: 38px;
-        top: 35px;
-      }
-
-      .crater2 {
-        width: 19px;
-        height: 19px;
-
-        left: 88px;
-        top: 72px;
-      }
-
-      .crater3 {
-        width: 14px;
-        height: 14px;
-
-        left: 47px;
-        top: 91px;
-      }
-
-      /* ==================================================
-   MÂY
-================================================== */
-
-      .cloud {
-        position: absolute;
-
-        width: 160px;
-        height: 40px;
-
-        border-radius: 50px;
-
-        background: rgba(255, 255, 255, 0.06);
-
-        filter: blur(2px);
-
-        animation: cloudMove 28s linear infinite;
-      }
-
-      .cloud:before,
-      .cloud:after {
-        content: "";
-
-        position: absolute;
-
-        border-radius: 50%;
-
-        background: inherit;
-      }
-
-      .cloud:before {
-        width: 55px;
-        height: 55px;
-
-        left: 25px;
-        bottom: 7px;
-      }
-
-      .cloud:after {
-        width: 65px;
-        height: 65px;
-
-        right: 20px;
-        bottom: 5px;
-      }
-
-      .cloud1 {
-        top: 205px;
-        left: -200px;
-      }
-
-      .cloud2 {
-        top: 350px;
-        left: -300px;
-
-        animation-delay: 10s;
-
-        transform: scale(0.7);
-      }
-
-      @keyframes cloudMove {
-        from {
-          transform: translateX(-250px);
-        }
-
-        to {
-          transform: translateX(calc(100vw + 300px));
-        }
-      }
-
-      /* ==================================================
-   ĐÈN LỒNG
-================================================== */
-
-      .lantern {
-        position: absolute;
-
-        width: 42px;
-        height: 58px;
-
-        border-radius: 45% 45% 50% 50%;
-
-        background: linear-gradient(90deg, #800014, #ff3448, #800014);
-
+    to{
         box-shadow:
-          0 0 15px #ff3045,
-          0 0 35px rgba(255, 40, 60, 0.45);
+        0 0 35px #fff5a8,
+        0 0 90px #ffd84c,
+        0 0 140px rgba(255,210,50,.4);
+    }
+}
+
+.crater{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(180,140,30,.18);
+}
+
+.c1{
+    width:25px;
+    height:25px;
+    left:35px;
+    top:32px;
+}
+
+.c2{
+    width:18px;
+    height:18px;
+    left:82px;
+    top:67px;
+}
+
+.c3{
+    width:14px;
+    height:14px;
+    left:45px;
+    top:88px;
+}
+
+/* ================= MÂY ================= */
+
+.cloud{
+    position:absolute;
+    width:180px;
+    height:40px;
+    border-radius:50px;
+    background:rgba(255,255,255,.055);
+    filter:blur(2px);
+    animation:cloudMove 28s linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:inherit;
+}
+
+.cloud:before{
+    width:65px;
+    height:65px;
+    left:25px;
+    bottom:4px;
+}
+
+.cloud:after{
+    width:75px;
+    height:75px;
+    right:20px;
+    bottom:3px;
+}
+
+.cloud1{
+    top:23%;
+    left:-220px;
+}
+
+.cloud2{
+    top:45%;
+    left:-300px;
+    animation-delay:10s;
+    transform:scale(.7);
+}
+
+@keyframes cloudMove{
+    from{
+        transform:translateX(-250px);
+    }
+
+    to{
+        transform:translateX(calc(100vw + 350px));
+    }
+}
+
+/* ================= ĐÈN LỒNG ================= */
+
+.lantern{
+    position:absolute;
+    width:40px;
+    height:56px;
+    border-radius:45%;
+    background:linear-gradient(
+        90deg,
+        #7b0015,
+        #ff3045,
+        #ff8c00,
+        #ff3045,
+        #7b0015
+    );
+
+    box-shadow:
+        0 0 15px #ff3045,
+        0 0 35px rgba(255,40,60,.6);
+
+    animation:lanternFloat 4s ease-in-out infinite;
+}
+
+.lantern:before{
+    content:"🏮";
+    position:absolute;
+    left:5px;
+    top:7px;
+    font-size:28px;
+    filter:drop-shadow(0 0 8px #ffd43d);
+}
+
+.lantern:after{
+    content:"";
+    position:absolute;
+    width:3px;
+    height:18px;
+    left:19px;
+    bottom:-18px;
+    background:#ffd43d;
+    box-shadow:
+        -7px 12px #ffd43d,
+        7px 12px #ffd43d;
+}
+
+.l1{
+    left:4%;
+    top:25%;
+}
+
+.l2{
+    left:5%;
+    top:65%;
+    transform:scale(.65);
+    animation-delay:1s;
+}
+
+.l3{
+    right:4%;
+    top:27%;
+    transform:scale(.75);
+    animation-delay:2s;
+}
+
+.l4{
+    right:6%;
+    top:65%;
+    transform:scale(.65);
+    animation-delay:3s;
+}
+
+@keyframes lanternFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-4deg);
+    }
+
+    50%{
+        transform:translateY(-25px) rotate(4deg);
+    }
+}
+
+/* ================= CANVAS PHÁO HOA ================= */
+
+#fireworks{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:5;
+}
+
+/* ================= TRANG ================= */
+
+.page{
+    position:relative;
+    width:100%;
+    height:100vh;
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:12px;
+
+    z-index:10;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    width:100%;
+    max-width:610px;
+    max-height:82vh;
+
+    padding:28px 20px;
+
+    border-radius:28px;
+
+    background:rgba(7,5,35,.74);
+
+    border:1px solid rgba(255,220,100,.25);
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 0 40px rgba(255,190,40,.12),
+        inset 0 0 35px rgba(255,255,255,.025);
+
+    overflow-y:auto;
+
+    scrollbar-width:none;
+}
+
+.card::-webkit-scrollbar{
+    display:none;
+}
+
+/* ================= SCREEN ================= */
+
+.screen{
+    display:none;
+    width:100%;
+    text-align:center;
+}
+
+.screen.active{
+    display:block;
+    animation:screenIn .65s ease;
+}
+
+@keyframes screenIn{
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+/* ================= ICON ================= */
+
+.top-icon{
+    font-size:46px;
+    margin-bottom:8px;
+    animation:iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+}
+
+/* ================= TIÊU ĐỀ ================= */
+
+h1{
+    font-size:clamp(35px,10vw,65px);
+    line-height:1.08;
+    letter-spacing:-1px;
+
+    background:linear-gradient(
+        90deg,
+        #fff6ad,
+        #ffd32e,
+        #ffffff,
+        #ffd32e,
+        #fff6ad
+    );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:titleMove 4s linear infinite;
+
+    filter:drop-shadow(0 0 12px rgba(255,215,60,.6));
+}
+
+@keyframes titleMove{
+    from{
+        background-position:0%;
+    }
 
-        animation: lanternFloat 4s ease-in-out infinite;
-      }
+    to{
+        background-position:300%;
+    }
+}
 
-      .lantern:after {
-        content: "🏮";
+/* ================= DIVIDER ================= */
 
-        position: absolute;
+.divider{
+    width:150px;
+    height:2px;
+    margin:18px auto;
 
-        top: 9px;
-        left: 5px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ffd43b,
+        transparent
+    );
 
-        font-size: 28px;
+    box-shadow:0 0 12px #ffd43b;
+}
 
-        filter: drop-shadow(0 0 7px #ffd43d);
-      }
+/* ================= CHỮ ================= */
 
-      .lantern1 {
-        left: 4%;
-        top: 22%;
-      }
+.subtitle{
+    font-size:16px;
+    line-height:1.7;
+    color:#ffefb2;
+}
 
-      .lantern2 {
-        left: 7%;
-        top: 58%;
+.wish{
+    margin:10px 0;
+    padding:13px;
 
-        transform: scale(0.7);
+    border-radius:16px;
 
-        animation-delay: 1s;
-      }
+    background:rgba(255,255,255,.055);
 
-      .lantern3 {
-        right: 4%;
-        top: 24%;
+    border:1px solid rgba(255,220,100,.14);
+
+    font-size:15px;
+    line-height:1.65;
+
+    color:#fff3c2;
+}
 
-        transform: scale(0.75);
+/* ================= NÚT ================= */
 
-        animation-delay: 2s;
-      }
+.buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
 
-      .lantern4 {
-        right: 7%;
-        top: 62%;
+    margin-top:20px;
+}
 
-        transform: scale(0.65);
+button{
+    min-height:46px;
 
-        animation-delay: 3s;
-      }
+    padding:12px 18px;
 
-      @keyframes lanternFloat {
-        0%,
-        100% {
-          transform: translateY(0) rotate(-4deg);
-        }
+    border:none;
+    border-radius:50px;
 
-        50% {
-          transform: translateY(-25px) rotate(4deg);
-        }
-      }
+    background:linear-gradient(
+        135deg,
+        #fff0a1,
+        #ffc928
+    );
 
-      /* ==================================================
-   KHUNG CHÍNH
-================================================== */
+    color:#351b00;
 
-      .page {
-        width: 100%;
-        min-height: 100vh;
+    font-size:14px;
+    font-weight:bold;
 
-        display: flex;
+    cursor:pointer;
 
-        justify-content: center;
-        align-items: center;
+    box-shadow:
+        0 0 18px rgba(255,210,60,.3);
 
-        padding: 20px 12px;
-      }
+    transition:.2s;
+}
 
-      /* ==================================================
-   CARD
-================================================== */
+button:active{
+    transform:scale(.91);
+}
 
-      .card {
-        width: 100%;
-        max-width: 600px;
+/* ================= QUÀ ================= */
 
-        min-height: 500px;
+.gift{
+    font-size:85px;
+    margin:10px auto;
 
-        padding: 35px 18px;
+    width:max-content;
 
-        display: flex;
+    cursor:pointer;
 
-        align-items: center;
-        justify-content: center;
+    animation:giftShake 1.3s infinite;
+}
 
-        border-radius: 28px;
+@keyframes giftShake{
+    0%,100%{
+        transform:rotate(0);
+    }
 
-        background: rgba(10, 7, 35, 0.76);
+    25%{
+        transform:rotate(-9deg);
+    }
 
-        backdrop-filter: blur(12px);
+    75%{
+        transform:rotate(9deg);
+    }
+}
 
-        -webkit-backdrop-filter: blur(12px);
+.secret{
+    display:none;
 
-        border: 1px solid rgba(255, 220, 100, 0.25);
+    font-size:16px;
+    line-height:1.75;
 
-        box-shadow:
-          0 0 35px rgba(255, 190, 40, 0.12),
-          inset 0 0 30px rgba(255, 255, 255, 0.025);
+    color:#ffe98b;
+}
 
-        overflow: hidden;
-      }
+.secret.show{
+    display:block;
+    animation:secretIn .8s ease;
+}
 
-      /* ==================================================
-   SCREEN
-================================================== */
+@keyframes secretIn{
+    from{
+        opacity:0;
+        transform:scale(.6);
+    }
 
-      .screen {
-        width: 100%;
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
 
-        display: none;
+/* ================= SPARKLE ================= */
 
-        text-align: center;
-      }
+.sparkle{
+    position:fixed;
 
-      .screen.active {
-        display: block;
+    pointer-events:none;
 
-        animation: screenIn 0.7s ease;
-      }
+    z-index:100;
 
-      @keyframes screenIn {
-        from {
-          opacity: 0;
+    font-size:17px;
 
-          transform: scale(0.94) translateY(20px);
-        }
+    animation:sparkleOut 1s forwards;
+}
 
-        to {
-          opacity: 1;
+@keyframes sparkleOut{
+    from{
+        opacity:1;
+        transform:scale(.5) translateY(0);
+    }
 
-          transform: scale(1) translateY(0);
-        }
-      }
+    to{
+        opacity:0;
+        transform:scale(1.8) translateY(-55px);
+    }
+}
 
-      /* ==================================================
-   ICON TRÊN ĐẦU
-================================================== */
+/* ================= NÚT NHẠC ================= */
 
-      .top-icon {
-        font-size: 48px;
+.music{
+    position:fixed;
 
-        margin-bottom: 12px;
+    right:10px;
+    bottom:10px;
 
-        animation: iconFloat 2s infinite ease-in-out;
-      }
+    z-index:200;
+}
 
-      @keyframes iconFloat {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
+.music button{
+    min-height:43px;
+    padding:10px 14px;
 
-        50% {
-          transform: translateY(-8px);
-        }
-      }
+    font-size:12px;
+}
 
-      /* ==================================================
-   TIÊU ĐỀ
-================================================== */
+/* ================= FOOTER ================= */
 
-      h1 {
-        width: 100%;
+.footer{
+    margin-top:18px;
+    font-size:11px;
+    color:#888;
+}
 
-        font-size: clamp(38px, 11vw, 68px);
+/* ================= ĐIỆN THOẠI ================= */
 
-        line-height: 1.05;
+@media(max-width:600px){
 
-        letter-spacing: -1px;
+    .moon{
+        width:100px;
+        height:100px;
+        top:25px;
+    }
 
-        background: linear-gradient(
-          90deg,
-          #fff6ad,
-          #ffd32e,
-          #ffffff,
-          #ffd32e,
-          #fff6ad
-        );
+    .cloud1{
+        top:20%;
+    }
 
-        background-size: 300%;
+    .cloud2{
+        top:50%;
+    }
 
-        -webkit-background-clip: text;
+    .lantern{
+        width:30px;
+        height:43px;
+    }
 
-        color: transparent;
+    .lantern:before{
+        font-size:21px;
+        left:4px;
+        top:5px;
+    }
 
-        animation: titleMove 4s linear infinite;
+    .lantern:after{
+        left:14px;
+    }
 
-        filter: drop-shadow(0 0 12px rgba(255, 215, 60, 0.65));
-      }
+    .page{
+        padding:10px;
+        align-items:center;
+    }
 
-      @keyframes titleMove {
-        from {
-          background-position: 0%;
-        }
+    .card{
+        width:100%;
+        max-width:500px;
 
-        to {
-          background-position: 300%;
-        }
-      }
+        max-height:73vh;
 
-      /* ==================================================
-   DIVIDER
-================================================== */
+        padding:23px 15px;
 
-      .divider {
-        width: 150px;
-        height: 2px;
+        border-radius:23px;
+    }
 
-        margin: 22px auto;
+    .top-icon{
+        font-size:38px;
+    }
 
-        background: linear-gradient(90deg, transparent, #ffd43b, transparent);
+    h1{
+        font-size:34px;
+    }
 
-        box-shadow: 0 0 12px #ffd43b;
-      }
+    .divider{
+        margin:13px auto;
+    }
 
-      /* ==================================================
-   ĐOẠN VĂN
-================================================== */
+    .subtitle{
+        font-size:15px;
+        line-height:1.6;
+    }
 
-      .subtitle {
-        padding: 0 5px;
+    .wish{
+        padding:11px 10px;
+        font-size:14px;
+        line-height:1.55;
+    }
 
-        font-size: 16px;
+    .buttons{
+        flex-direction:column;
+        width:100%;
+    }
 
-        line-height: 1.8;
+    .buttons button{
+        width:100%;
+        min-height:45px;
+    }
 
-        color: #ffefb2;
-      }
+    .gift{
+        font-size:72px;
+    }
 
-      /* ==================================================
-   LỜI CHÚC
-================================================== */
+    .music{
+        right:8px;
+        bottom:8px;
+    }
 
-      .wish {
-        width: 100%;
+    .music button{
+        font-size:11px;
+        padding:9px 12px;
+    }
+}
 
-        margin: 10px auto;
+/* ================= ĐIỆN THOẠI NHỎ ================= */
 
-        padding: 15px 13px;
+@media(max-width:380px){
 
-        border-radius: 17px;
+    .moon{
+        width:85px;
+        height:85px;
+    }
 
-        background: rgba(255, 255, 255, 0.055);
+    .card{
+        max-height:70vh;
+        padding:20px 12px;
+    }
 
-        border: 1px solid rgba(255, 220, 100, 0.14);
+    h1{
+        font-size:30px;
+    }
 
-        font-size: 15px;
+    .top-icon{
+        font-size:32px;
+    }
 
-        line-height: 1.65;
+    .subtitle{
+        font-size:14px;
+    }
 
-        color: #fff3c2;
-      }
+    .wish{
+        font-size:13px;
+    }
 
-      /* ==================================================
-   NÚT
-================================================== */
+    button{
+        min-height:43px;
+        font-size:13px;
+    }
+}
 
-      .buttons {
-        width: 100%;
+/* ================= MÁY TÍNH ================= */
 
-        display: flex;
+@media(min-width:601px){
 
-        justify-content: center;
+    .card{
+        min-height:520px;
+    }
 
-        align-items: center;
+    .lantern{
+        width:45px;
+        height:62px;
+    }
+}
+</style>
+</head>
 
-        flex-wrap: wrap;
+<body>
 
-        gap: 10px;
+<!-- ================= BẦU TRỜI ================= -->
 
-        margin-top: 25px;
-      }
+<div id="sky">
 
-      button {
-        min-height: 48px;
+    <div id="stars"></div>
 
-        padding: 13px 20px;
-
-        border: none;
-
-        border-radius: 50px;
-
-        background: linear-gradient(135deg, #fff0a1, #ffc928);
-
-        color: #351b00;
-
-        font-size: 15px;
-
-        font-weight: bold;
-
-        cursor: pointer;
-
-        box-shadow: 0 0 18px rgba(255, 210, 60, 0.3);
-
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
-      }
-
-      button:active {
-        transform: scale(0.92);
-
-        box-shadow: 0 0 30px rgba(255, 210, 60, 0.7);
-      }
-
-      /* ==================================================
-   HỘP QUÀ
-================================================== */
-
-      .gift {
-        display: block;
-
-        width: max-content;
-
-        margin: 15px auto;
-
-        font-size: 90px;
-
-        cursor: pointer;
-
-        animation: giftShake 1.3s infinite;
-      }
-
-      @keyframes giftShake {
-        0%,
-        100% {
-          transform: rotate(0);
-        }
-
-        25% {
-          transform: rotate(-9deg);
-        }
-
-        75% {
-          transform: rotate(9deg);
-        }
-      }
-
-      .secret {
-        display: none;
-
-        padding: 0 5px;
-
-        font-size: 17px;
-
-        line-height: 1.8;
-
-        color: #ffe98b;
-      }
-
-      .secret.show {
-        display: block;
-
-        animation: secretIn 0.8s ease;
-      }
-
-      @keyframes secretIn {
-        from {
-          opacity: 0;
-
-          transform: scale(0.6);
-        }
-
-        to {
-          opacity: 1;
-
-          transform: scale(1);
-        }
-      }
-
-      /* ==================================================
-   PHÁO HOA
-================================================== */
-
-      .firework {
-        position: fixed;
-
-        width: 4px;
-        height: 4px;
-
-        border-radius: 50%;
-
-        background: white;
-
-        pointer-events: none;
-
-        z-index: 1000;
-
-        box-shadow:
-          0 0 8px white,
-          0 0 15px white;
-      }
-
-      /* ==================================================
-   SPARKLE
-================================================== */
-
-      .sparkle {
-        position: fixed;
-
-        pointer-events: none;
-
-        z-index: 1500;
-
-        font-size: 17px;
-
-        animation: sparkleOut 1s forwards;
-      }
-
-      @keyframes sparkleOut {
-        from {
-          opacity: 1;
-
-          transform: scale(1) translateY(0);
-        }
-
-        to {
-          opacity: 0;
-
-          transform: scale(1.8) translateY(-45px);
-        }
-      }
-
-      /* ==================================================
-   NÚT NHẠC
-================================================== */
-
-      .music {
-        position: fixed;
-
-        right: 12px;
-        bottom: 12px;
-
-        z-index: 2000;
-      }
-
-      .music button {
-        min-height: 44px;
-
-        padding: 11px 16px;
-
-        font-size: 13px;
-
-        box-shadow: 0 0 20px rgba(255, 210, 60, 0.45);
-      }
-
-      /* ==================================================
-   FOOTER
-================================================== */
-
-      .footer {
-        margin-top: 25px;
-
-        font-size: 12px;
-
-        color: #999;
-      }
-
-      /* ==================================================
-   ĐIỆN THOẠI RẤT NHỎ
-================================================== */
-
-      @media (max-width: 380px) {
-        .page {
-          padding: 12px 8px;
-        }
-
-        .card {
-          padding: 28px 14px;
-
-          min-height: 520px;
-
-          border-radius: 24px;
-        }
-
-        .moon {
-          width: 115px;
-          height: 115px;
-
-          top: 48px;
-        }
-
-        .subtitle {
-          font-size: 15px;
-        }
-
-        .wish {
-          font-size: 14px;
-
-          padding: 13px 10px;
-        }
-
-        button {
-          width: 100%;
-
-          min-height: 47px;
-        }
-
-        .gift {
-          font-size: 78px;
-        }
-      }
-
-      /* ==================================================
-   MÀN HÌNH CAO
-================================================== */
-
-      @media (max-width: 600px) and (min-height: 750px) {
-        .card {
-          min-height: 560px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- ==================================================
-     BẦU TRỜI
-================================================== -->
-
-    <div id="sky">
-      <div class="moon">
-        <span class="crater1"></span>
-        <span class="crater2"></span>
-        <span class="crater3"></span>
-      </div>
-
-      <div class="cloud cloud1"></div>
-
-      <div class="cloud cloud2"></div>
-
-      <div class="lantern lantern1"></div>
-
-      <div class="lantern lantern2"></div>
-
-      <div class="lantern lantern3"></div>
-
-      <div class="lantern lantern4"></div>
+    <div class="moon">
+        <span class="crater c1"></span>
+        <span class="crater c2"></span>
+        <span class="crater c3"></span>
     </div>
 
-    <!-- ==================================================
-     NỘI DUNG
-================================================== -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
 
-    <section class="page">
-      <div class="card">
-        <!-- ================= TRANG 1 ================= -->
+    <div class="lantern l1"></div>
+    <div class="lantern l2"></div>
+    <div class="lantern l3"></div>
+    <div class="lantern l4"></div>
 
-        <div id="screen1" class="screen active">
-          <div class="top-icon">🌕🏮✨</div>
+</div>
 
-          <h1>
-            CHÚC FEN
-            <br />
-            TRUNG THU
-          </h1>
+<!-- ================= PHÁO HOA ================= -->
 
-          <div class="divider"></div>
+<canvas id="fireworks"></canvas>
 
-          <p class="subtitle">
-            Một đêm trăng đẹp lại đến... 🌙
+<!-- ================= NỘI DUNG ================= -->
 
-            <br /><br />
+<section class="page">
 
-            Không cần điều gì quá to tát.
+<div class="card">
 
-            <br />
+<!-- ================= TRANG 1 ================= -->
 
-            Chỉ cần fen vui,
+<div id="screen1" class="screen active">
 
-            <br />
+<div class="top-icon">
+🌕🏮✨
+</div>
 
-            cười thật nhiều
+<h1>
+CHÚC FEN
+<br>
+TRUNG THU
+</h1>
 
-            <br />
+<div class="divider"></div>
 
-            và có một mùa Trung Thu thật đáng nhớ! ❤️
-          </p>
+<p class="subtitle">
 
-          <div class="buttons">
-            <button onclick="nextScreen(2)">🏮 BẮT ĐẦU</button>
-          </div>
-        </div>
+Một đêm trăng đẹp lại đến... 🌙
 
-        <!-- ================= TRANG 2 ================= -->
+<br><br>
 
-        <div id="screen2" class="screen">
-          <div class="top-icon">🌕🐇</div>
+Không cần điều gì quá to tát.
 
-          <h1>
-            ĐÊM TRĂNG
-            <br />
-            CỦA FEN
-          </h1>
+<br>
 
-          <div class="divider"></div>
+Chỉ cần fen vui,
 
-          <p class="subtitle">
-            Trăng hôm nay có thể rất sáng...
+<br>
 
-            <br /><br />
+cười thật nhiều
 
-            Nhưng mong rằng
+<br>
 
-            <br />
+và có một mùa Trung Thu thật đáng nhớ! ❤️
 
-            nụ cười của fen
+</p>
 
-            <br />
+<div class="buttons">
 
-            còn sáng hơn cả ánh trăng. ✨
+<button onclick="nextScreen(2)">
+🏮 BẮT ĐẦU
+</button>
 
-            <br /><br />
+</div>
 
-            Bánh Trung Thu có thể chia nhau,
+</div>
 
-            <br />
 
-            còn niềm vui thì...
+<!-- ================= TRANG 2 ================= -->
 
-            <br />
+<div id="screen2" class="screen">
 
-            <b>cứ chia thật nhiều nhé! 😆</b>
-          </p>
+<div class="top-icon">
+🌕🐇
+</div>
 
-          <div class="buttons">
-            <button onclick="nextScreen(1)">⬅ QUAY LẠI</button>
+<h1>
+ĐÊM TRĂNG
+<br>
+CỦA FEN
+</h1>
 
-            <button onclick="nextScreen(3)">TIẾP TỤC ➜</button>
-          </div>
-        </div>
+<div class="divider"></div>
 
-        <!-- ================= TRANG 3 ================= -->
+<p class="subtitle">
 
-        <div id="screen3" class="screen">
-          <div class="top-icon">💌</div>
+Trăng hôm nay có thể rất sáng...
 
-          <h1>
-            GỬI FEN
-            <br />
-            VÀI LỜI
-          </h1>
+<br><br>
 
-          <div class="divider"></div>
+Nhưng mong rằng
 
-          <div class="wish">
-            🌕 Chúc fen một mùa Trung Thu
-            <b>vui vẻ, bình an</b>
-            và thật nhiều tiếng cười.
-          </div>
+<br>
 
-          <div class="wish">
-            🏮 Chúc những điều tốt đẹp cứ từ từ tìm đến fen, đúng lúc và đúng
-            cách.
-          </div>
+nụ cười của fen
 
-          <div class="wish">
-            🥮 Chúc fen ăn nhiều hơn tru(bớt bỏ bữa) đi chơi vui vỉa, ngủ thật
-            ngon và mỗi ngày đều có chuyện vui. 😂
-          </div>
+<br>
 
-          <div class="wish">
-            ✨ Mong những điều fen đang cố gắng hôm nay sẽ trở thành những điều
-            khiến fen tự hào trong tương lai.
-          </div>
+còn sáng hơn cả ánh trăng. ✨
 
-          <div class="buttons">
-            <button onclick="nextScreen(2)">⬅ QUAY LẠI</button>
+<br><br>
 
-            <button onclick="nextScreen(4)">🎁 CÓ QUÀ</button>
-          </div>
-        </div>
+Bánh Trung Thu có thể chia nhau,
 
-        <!-- ================= TRANG 4 ================= -->
+<br>
 
-        <div id="screen4" class="screen">
-          <div class="top-icon">🎁✨</div>
+còn niềm vui thì...
 
-          <h1>
-            MỞ QUÀ
-            <br />
-            ĐI FEN
-          </h1>
+<br>
 
-          <div class="divider"></div>
+<b>cứ chia thật nhiều nhé! 😆</b>
 
-          <p class="subtitle">
-            Có một món quà nhỏ dành riêng cho fen...
+</p>
 
-            <br />
+<div class="buttons">
 
-            Chạm vào hộp quà nhé! 👇
-          </p>
+<button onclick="nextScreen(1)">
+⬅ QUAY LẠI
+</button>
 
-          <div class="gift" onclick="openGift()">🎁</div>
+<button onclick="nextScreen(3)">
+TIẾP TỤC ➜
+</button>
 
-          <div id="secret" class="secret">
-            🌕✨🏮✨🌕
+</div>
 
-            <br /><br />
+</div>
 
-            <b> CHÚC FEN TRUNG THU VUI VẺ! ❤️ </b>
 
-            <br /><br />
+<!-- ================= TRANG 3 ================= -->
 
-            Mong fen luôn vui,
+<div id="screen3" class="screen">
 
-            <br />
+<div class="top-icon">
+💌
+</div>
 
-            luôn giữ được nụ cười,
+<h1>
+GỬI FEN
+<br>
+VÀI LỜI
+</h1>
 
-            <br />
+<div class="divider"></div>
 
-            gặp thật nhiều may mắn
+<div class="wish">
 
-            <br />
+🌕 Chúc fen một mùa Trung Thu
+<b>vui vẻ, bình an</b>
+và thật nhiều tiếng cười.
 
-            và có thật nhiều khoảnh khắc đáng nhớ.
+</div>
 
-            <br /><br />
+<div class="wish">
 
-            🥮 Ăn bánh ngon nhé!(nếu có ngừi tặng:)))
+🏮 Chúc những điều tốt đẹp cứ từ từ tìm đến fen, đúng lúc và đúng cách.
 
-            <br />
+</div>
 
-            🏮 Đi chơi vui nhé!(quên bị nhốt rồi mà nhở)
+<div class="wish">
 
-            <br />
+🥮 Chúc fen ăn nhiều hơn tru(bớt bỏ bữa) đi chơi vui vỉa, ngủ thật ngon và mỗi ngày đều có chuyện vui. 😂
 
-            🌕 Ngắm trăng thật đẹp nhé!
-          </div>
+</div>
 
-          <div class="buttons">
-            <button onclick="nextScreen(3)">⬅ QUAY LẠI</button>
+<div class="wish">
 
-            <button onclick="fireworkShow()">🎆 PHÁO HOA</button>
+✨ Mong những điều fen đang cố gắng hôm nay sẽ trở thành những điều khiến fen tự hào trong tương lai.
 
-            <button onclick="nextScreen(5)">➜ TIẾP</button>
-          </div>
-        </div>
+</div>
 
-        <!-- ================= TRANG 5 ================= -->
+<div class="buttons">
 
-        <div id="screen5" class="screen">
-          <div class="top-icon">🌌🎆🌕</div>
+<button onclick="nextScreen(2)">
+⬅ QUAY LẠI
+</button>
 
-          <h1>
-            CHÚC FEN
-            <br />
-            LUÔN RỰC RỠ!
-          </h1>
+<button onclick="nextScreen(4)">
+🎁 CÓ QUÀ
+</button>
 
-          <div class="divider"></div>
+</div>
 
-          <p class="subtitle">
-            Đêm Trung Thu rồi cũng sẽ qua...
+</div>
 
-            <br /><br />
 
-            Nhưng hy vọng những điều tốt đẹp trong hôm nay sẽ ở lại thật lâu.
+<!-- ================= TRANG 4 ================= -->
 
-            <br /><br />
+<div id="screen4" class="screen">
 
-            ❤️ Luôn vui
+<div class="top-icon">
+🎁✨
+</div>
 
-            <br />
+<h1>
+MỞ QUÀ
+<br>
+ĐI FEN
+</h1>
 
-            ✨ Luôn may mắn
+<div class="divider"></div>
 
-            <br />
+<p class="subtitle">
 
-            🏮 Luôn có những người khiến fen mỉm cười
+Có một món quà nhỏ dành riêng cho fen...
 
-            <br />
+<br>
 
-            🌕 Và luôn có những ngày thật đáng nhớ trong trại giam qs:)) .
+Chạm vào hộp quà nhé! 👇
 
-            <br /><br />
+</p>
 
-            <b> TRUNG THU VUI VẺ NHÉ CỐT! 🥮 </b>
-          </p>
+<div class="gift" onclick="openGift()">
+🎁
+</div>
 
-          <div style="font-size: 38px; margin: 25px 0">🌕🏮🥮🐇🎆✨</div>
+<div id="secret" class="secret">
 
-          <div class="buttons">
-            <button onclick="nextScreen(1)">🔄 XEM LẠI</button>
+🌕✨🏮✨🌕
 
-            <button onclick="megaFirework()">🎆 SIÊU NHÌU PHÁO HOA</button>
-          </div>
+<br><br>
 
-          <div class="footer">Made dành tặng fen</div>
-        </div>
-      </div>
-    </section>
+<b>
+CHÚC FEN TRUNG THU VUI VẺ! ❤️
+</b>
 
-    <!-- ==================================================
-     NHẠC
-================================================== -->
+<br><br>
 
-    <div class="music">
-      <button id="musicBtn" onclick="toggleMusic()">🎵 BẬT NHẠC</button>
-    </div>
+Mong fen luôn vui,
 
-    <audio id="music" loop>
-      <source
-        src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946a8c6c24.mp3"
-        type="audio/mpeg"
-      />
-    </audio>
+<br>
 
-    <script>
-      /* ==================================================
+luôn giữ được nụ cười,
+
+<br>
+
+gặp thật nhiều may mắn
+
+<br>
+
+và có thật nhiều khoảnh khắc đáng nhớ.
+
+<br><br>
+
+🥮 Ăn bánh ngon nhé!(nếu có ngừi tặng:)))
+
+<br>
+
+🏮 Đi chơi vui nhé!(quên bị nhốt rồi mà nhở)
+
+<br>
+
+🌕 Ngắm trăng thật đẹp nhé!
+
+</div>
+
+<div class="buttons">
+
+<button onclick="nextScreen(3)">
+⬅ QUAY LẠI
+</button>
+
+<button onclick="fireworkShow()">
+🎆 PHÁO HOA
+</button>
+
+<button onclick="nextScreen(5)">
+➜ TIẾP
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= TRANG 5 ================= -->
+
+<div id="screen5" class="screen">
+
+<div class="top-icon">
+🌌🎆🌕
+</div>
+
+<h1>
+CHÚC FEN
+<br>
+LUÔN RỰC RỠ!
+</h1>
+
+<div class="divider"></div>
+
+<p class="subtitle">
+
+Đêm Trung Thu rồi cũng sẽ qua...
+
+<br><br>
+
+Nhưng hy vọng những điều tốt đẹp trong hôm nay sẽ ở lại thật lâu.
+
+<br><br>
+
+❤️ Luôn vui
+
+<br>
+
+✨ Luôn may mắn
+
+<br>
+
+🏮 Luôn có những người khiến fen mỉm cười
+
+<br>
+
+🌕 Và luôn có những ngày thật đáng nhớ trong trại giam qs:)) .
+
+<br><br>
+
+<b>
+TRUNG THU VUI VẺ NHÉ CỐT! 🥮
+</b>
+
+</p>
+
+<div style="font-size:38px;margin:20px 0">
+🌕🏮🥮🐇🎆✨
+</div>
+
+<div class="buttons">
+
+<button onclick="nextScreen(1)">
+🔄 XEM LẠI
+</button>
+
+<button onclick="megaFirework()">
+🎆 SIÊU NHÌU PHÁO HOA
+</button>
+
+</div>
+
+<div class="footer">
+Made dành tặng fen ❤️
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= NÚT NHẠC ================= -->
+
+<div class="music">
+
+<button id="musicBtn" onclick="toggleMusic()">
+🎵 BẬT NHẠC
+</button>
+
+</div>
+
+
+<audio id="music" loop preload="auto">
+<source
+src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946a8c6c24.mp3"
+type="audio/mpeg">
+</audio>
+
+
+<script>
+
+/* ==================================================
    TẠO SAO
 ================================================== */
 
-      for (let i = 0; i < 130; i++) {
-        let star = document.createElement("div");
+const sky=document.getElementById("stars");
 
-        star.className = "star";
+for(let i=0;i<180;i++){
 
-        star.style.left = Math.random() * 100 + "%";
+    const star=document.createElement("div");
 
-        star.style.top = Math.random() * 100 + "%";
+    star.className="star";
 
-        star.style.animationDelay = Math.random() * 3 + "s";
+    star.style.left=Math.random()*100+"%";
 
-        document.getElementById("sky").appendChild(star);
-      }
+    star.style.top=Math.random()*100+"%";
 
-      /* ==================================================
+    const size=1+Math.random()*2.5;
+
+    star.style.width=size+"px";
+    star.style.height=size+"px";
+
+    star.style.animationDelay=Math.random()*3+"s";
+
+    sky.appendChild(star);
+}
+
+
+/* ==================================================
    CHUYỂN TRANG
 ================================================== */
 
-      function nextScreen(number) {
-        document.querySelectorAll(".screen").forEach(function (screen) {
-          screen.classList.remove("active");
+function nextScreen(number){
+
+    document.querySelectorAll(".screen")
+    .forEach(function(screen){
+
+        screen.classList.remove("active");
+
+    });
+
+    document.getElementById("screen"+number)
+    .classList.add("active");
+
+    createSparkles(
+        window.innerWidth/2,
+        window.innerHeight/2
+    );
+
+    if(number===4){
+
+        setTimeout(function(){
+            fireworkShow();
+        },300);
+
+    }
+
+    if(number===5){
+
+        setTimeout(function(){
+            megaFirework();
+        },300);
+
+    }
+}
+
+
+/* ==================================================
+   SPARKLE
+================================================== */
+
+function createSparkles(x,y){
+
+    for(let i=0;i<15;i++){
+
+        const sparkle=document.createElement("div");
+
+        sparkle.className="sparkle";
+
+        sparkle.innerHTML=
+            ["✨","⭐","🌟","💫","🏮"][
+                Math.floor(Math.random()*5)
+            ];
+
+        sparkle.style.left=
+            x+(Math.random()*120-60)+"px";
+
+        sparkle.style.top=
+            y+(Math.random()*100-50)+"px";
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(function(){
+            sparkle.remove();
+        },1000);
+    }
+}
+
+
+/* ==================================================
+   CLICK SPARKLE
+================================================== */
+
+document.addEventListener("click",function(e){
+
+    if(e.target.tagName==="BUTTON") return;
+
+    createSparkles(
+        e.clientX,
+        e.clientY
+    );
+
+});
+
+
+/* ==================================================
+   CANVAS PHÁO HOA
+================================================== */
+
+const canvas=document.getElementById("fireworks");
+
+const ctx=canvas.getContext("2d");
+
+let rockets=[];
+let particles=[];
+
+function resizeCanvas(){
+
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+/* ==================================================
+   PHÓNG TÊN LỬA
+================================================== */
+
+function launchRocket(){
+
+    const x=
+        30+
+        Math.random()*
+        (canvas.width-60);
+
+    const targetY=
+        80+
+        Math.random()*
+        (canvas.height*.45);
+
+    rockets.push({
+
+        x:x,
+
+        y:canvas.height+10,
+
+        targetY:targetY,
+
+        speed:8+
+            Math.random()*4
+
+    });
+
+}
+
+
+/* ==================================================
+   NỔ PHÁO HOA
+================================================== */
+
+function explode(x,y){
+
+    const amount=
+        window.innerWidth<600
+        ? 75
+        : 120;
+
+    const hue=
+        Math.random()*360;
+
+    for(let i=0;i<amount;i++){
+
+        const angle=
+            Math.PI*2*i/amount;
+
+        const speed=
+            2+
+            Math.random()*6;
+
+        particles.push({
+
+            x:x,
+
+            y:y,
+
+            vx:
+                Math.cos(angle)*
+                speed,
+
+            vy:
+                Math.sin(angle)*
+                speed,
+
+            life:
+                65+
+                Math.random()*45,
+
+            size:
+                1+
+                Math.random()*3,
+
+            hue:
+                hue+
+                Math.random()*40-20
+
         });
 
-        document.getElementById("screen" + number).classList.add("active");
+    }
+}
 
-        createSparkles(window.innerWidth / 2, window.innerHeight / 2);
-      }
 
-      /* ==================================================
-   HIỆU ỨNG SPARKLE
+/* ==================================================
+   VẼ PHÁO HOA
 ================================================== */
 
-      function createSparkles(x, y) {
-        for (let i = 0; i < 20; i++) {
-          let sparkle = document.createElement("div");
+function animate(){
 
-          sparkle.className = "sparkle";
+    ctx.fillStyle="rgba(3,3,21,.20)";
 
-          sparkle.innerHTML = ["✨", "⭐", "🌟", "💫", "🏮"][
-            Math.floor(Math.random() * 5)
-          ];
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
-          sparkle.style.left = x + (Math.random() * 150 - 75) + "px";
 
-          sparkle.style.top = y + (Math.random() * 120 - 60) + "px";
+    /* TÊN LỬA */
 
-          document.body.appendChild(sparkle);
+    for(let i=rockets.length-1;i>=0;i--){
 
-          setTimeout(() => {
-            sparkle.remove();
-          }, 1000);
-        }
-      }
+        const r=rockets[i];
 
-      /* ==================================================
-   CLICK EFFECT
-================================================== */
+        r.y-=r.speed;
 
-      document.addEventListener("click", function (e) {
-        for (let i = 0; i < 6; i++) {
-          let sparkle = document.createElement("div");
+        ctx.beginPath();
 
-          sparkle.className = "sparkle";
+        ctx.arc(
+            r.x,
+            r.y,
+            2.5,
+            0,
+            Math.PI*2
+        );
 
-          sparkle.innerHTML = ["✨", "⭐", "🌟", "💫"][
-            Math.floor(Math.random() * 4)
-          ];
+        ctx.fillStyle="white";
 
-          sparkle.style.left = e.clientX + (Math.random() * 50 - 25) + "px";
+        ctx.shadowBlur=20;
 
-          sparkle.style.top = e.clientY + (Math.random() * 50 - 25) + "px";
+        ctx.shadowColor="white";
 
-          document.body.appendChild(sparkle);
+        ctx.fill();
 
-          setTimeout(() => {
-            sparkle.remove();
-          }, 1000);
-        }
-      });
 
-      /* ==================================================
-   TẠO PHÁO HOA
-================================================== */
+        if(r.y<=r.targetY){
 
-      function createFirework(x, y) {
-        for (let i = 0; i < 70; i++) {
-          let particle = document.createElement("div");
-
-          particle.className = "firework";
-
-          particle.style.left = x + "px";
-
-          particle.style.top = y + "px";
-
-          let angle = Math.random() * Math.PI * 2;
-
-          let distance = 50 + Math.random() * 180;
-
-          let dx = Math.cos(angle) * distance;
-
-          let dy = Math.sin(angle) * distance;
-
-          let size = 2 + Math.random() * 4;
-
-          particle.style.width = size + "px";
-
-          particle.style.height = size + "px";
-
-          particle.animate(
-            [
-              {
-                transform: "translate(0,0) scale(1)",
-
-                opacity: 1,
-              },
-
-              {
-                transform: `translate(${dx}px,${dy}px) scale(.1)`,
-
-                opacity: 0,
-              },
-            ],
-
-            {
-              duration: 800 + Math.random() * 1000,
-
-              easing: "cubic-bezier(.1,.7,.2,1)",
-            },
-          );
-
-          document.body.appendChild(particle);
-
-          setTimeout(() => {
-            particle.remove();
-          }, 2000);
-        }
-      }
-
-      /* ==================================================
-   BẮN PHÁO HOA
-================================================== */
-
-      function fireworkShow() {
-        for (let i = 0; i < 35; i++) {
-          setTimeout(() => {
-            createFirework(
-              30 + Math.random() * (window.innerWidth - 60),
-
-              80 + Math.random() * (window.innerHeight * 0.5),
+            explode(
+                r.x,
+                r.y
             );
-          }, i * 100);
+
+            rockets.splice(i,1);
+
         }
-      }
 
-      /* ==================================================
-   ĐẠI PHÁO HOA
-================================================== */
+    }
 
-      function megaFirework() {
-        for (let i = 0; i < 90; i++) {
-          setTimeout(() => {
-            createFirework(
-              25 + Math.random() * (window.innerWidth - 50),
 
-              70 + Math.random() * (window.innerHeight * 0.55),
+    /* HẠT PHÁO HOA */
+
+    for(let i=particles.length-1;i>=0;i--){
+
+        const p=particles[i];
+
+        p.x+=p.vx;
+
+        p.y+=p.vy;
+
+        p.vy+=.045;
+
+        p.vx*=.985;
+
+        p.vy*=.985;
+
+        p.life--;
+
+        const alpha=
+            Math.max(
+                p.life/100,
+                0
             );
-          }, i * 70);
-        }
-      }
 
-      /* ==================================================
-   MỞ QUÀ
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle=
+            "hsla("+
+            p.hue+
+            ",100%,65%,"+
+            alpha+
+            ")";
+
+        ctx.shadowBlur=14;
+
+        ctx.shadowColor=
+            "hsl("+
+            p.hue+
+            ",100%,65%)";
+
+        ctx.fill();
+
+
+        if(p.life<=0){
+
+            particles.splice(i,1);
+
+        }
+
+    }
+
+    requestAnimationFrame(animate);
+
+}
+
+animate();
+
+
+/* ==================================================
+   PHÁO HOA THƯỜNG
 ================================================== */
 
-      function openGift() {
-        document.getElementById("secret").classList.add("show");
+function fireworkShow(){
 
-        megaFirework();
+    for(let i=0;i<30;i++){
 
-        createManySparkles();
-      }
+        setTimeout(function(){
 
-      /* ==================================================
-   NHIỀU SPARKLE
+            launchRocket();
+
+        },i*110);
+
+    }
+
+}
+
+
+/* ==================================================
+   SIÊU PHÁO HOA
 ================================================== */
 
-      function createManySparkles() {
-        for (let i = 0; i < 70; i++) {
-          setTimeout(() => {
-            createSparkles(
-              Math.random() * window.innerWidth,
+function megaFirework(){
 
-              Math.random() * window.innerHeight,
-            );
-          }, i * 30);
-        }
-      }
+    for(let i=0;i<90;i++){
 
-      /* ==================================================
+        setTimeout(function(){
+
+            launchRocket();
+
+        },i*55);
+
+    }
+
+}
+
+
+/* ==================================================
    PHÁO HOA TỰ ĐỘNG
 ================================================== */
 
-      setInterval(() => {
-        let soPhao = 1 + Math.floor(Math.random() * 3);
+setInterval(function(){
 
-        for (let i = 0; i < soPhao; i++) {
-          setTimeout(() => {
-            createFirework(
-              30 + Math.random() * (window.innerWidth - 60),
+    const amount=
+        1+
+        Math.floor(
+            Math.random()*3
+        );
 
-              80 + Math.random() * (window.innerHeight * 0.45),
+    for(let i=0;i<amount;i++){
+
+        setTimeout(function(){
+
+            launchRocket();
+
+        },i*180);
+
+    }
+
+},900);
+
+
+/* ==================================================
+   MỞ QUÀ
+================================================== */
+
+function openGift(){
+
+    document
+        .getElementById("secret")
+        .classList.add("show");
+
+    megaFirework();
+
+    createManySparkles();
+
+}
+
+
+/* ==================================================
+   SPARKLE SIÊU NHIỀU
+================================================== */
+
+function createManySparkles(){
+
+    for(let i=0;i<60;i++){
+
+        setTimeout(function(){
+
+            createSparkles(
+                Math.random()*
+                window.innerWidth,
+
+                Math.random()*
+                window.innerHeight
             );
-          }, i * 250);
-        }
-      }, 1800);
 
-      /* ==================================================
+        },i*35);
+
+    }
+
+}
+
+
+/* ==================================================
    NHẠC
 ================================================== */
 
-      let music = document.getElementById("music");
+const music=
+    document.getElementById("music");
 
-      let playing = false;
+const musicBtn=
+    document.getElementById("musicBtn");
 
-      function toggleMusic() {
-        if (!playing) {
-          music.play();
+let playing=false;
 
-          playing = true;
 
-          document.getElementById("musicBtn").innerHTML = "🔇 TẮT NHẠC";
-        } else {
-          music.pause();
+/* ==================================================
+   BẬT / TẮT NHẠC
+================================================== */
 
-          playing = false;
+async function toggleMusic(){
 
-          document.getElementById("musicBtn").innerHTML = "🎵 BẬT NHẠC";
+    if(!playing){
+
+        try{
+
+            await music.play();
+
+            playing=true;
+
+            musicBtn.innerHTML=
+                "🔇 TẮT NHẠC";
+
         }
-      }
-    </script>
-  </body>
+
+        catch(error){
+
+            musicBtn.innerHTML=
+                "⚠️ KHÔNG TẢI ĐƯỢC NHẠC";
+
+            alert(
+                "Không tải được nhạc từ đường dẫn hiện tại.\\n\\n" +
+                "Nếu bạn muốn nhạc chắc chắn chạy, hãy đặt file chill.mp3 " +
+                "cùng thư mục với index.html."
+            );
+
+        }
+
+    }
+
+    else{
+
+        music.pause();
+
+        playing=false;
+
+        musicBtn.innerHTML=
+            "🎵 BẬT NHẠC";
+
+    }
+
+}
+
+
+/* ==================================================
+   TỰ BẮN PHÁO KHI VỪA MỞ
+================================================== */
+
+setTimeout(function(){
+    fireworkShow();
+},500);
+
+setTimeout(function(){
+    fireworkShow();
+},3500);
+
+</script>
+
+</body>
 </html>
-```
