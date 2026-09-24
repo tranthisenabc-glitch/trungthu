@@ -1,16 +1,14 @@
+```html
 <!doctype html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gửi fen - Chúc Mừng Trung Thu</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap");
 
-      :root {
-        --primary: #f6d365;
-        --bg-gradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-      }
+    <title>🌕 Chúc Fen Trung Thu 🏮</title>
+
+    <style>
+      /* ================= CÀI ĐẶT CHUNG ================= */
 
       * {
         margin: 0;
@@ -18,353 +16,1226 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        font-family: "Quicksand", sans-serif;
-        background: var(--bg-gradient);
-        height: 100vh;
-        overflow: hidden;
-        color: #fff;
-        position: relative;
+        font-family: Arial, sans-serif;
+        background: #050313;
+        color: white;
+        overflow-x: hidden;
       }
 
-      /* --- MÀN HÌNH CHỜ (ĐỂ KÍCH HOẠT NHẠC) --- */
-      #welcome-screen {
+      /* ================= BẦU TRỜI ================= */
+
+      #sky {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        cursor: pointer;
-        transition: opacity 1s ease;
+        inset: 0;
+        z-index: -10;
+        overflow: hidden;
+
+        background: radial-gradient(
+          circle at 50% 35%,
+          #30266c 0%,
+          #15103d 40%,
+          #070419 75%,
+          #020108 100%
+        );
       }
 
-      .lantern-btn {
-        width: 80px;
-        height: 100px;
-        background: linear-gradient(180deg, #ff5e62, #ff9966);
-        border-radius: 40px 40px 10px 10px;
-        position: relative;
-        box-shadow: 0 0 50px #ff9966;
-        animation: pulse 1.5s infinite alternate;
-      }
-
-      .lantern-btn::after {
-        content: "";
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 20px;
-        background: #ffcc00;
-        border-radius: 50%;
-        box-shadow: 0 0 20px #fff;
-      }
-
-      #welcome-screen p {
-        margin-top: 30px;
-        font-size: 1.5rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        animation: blink 2s infinite;
-      }
-
-      /* --- BACKGROUND HIỆU ỨNG --- */
-      .moon {
-        position: absolute;
-        top: 50px;
-        right: 100px;
-        width: 150px;
-        height: 150px;
-        background: radial-gradient(circle, #fff, #f6d365);
-        border-radius: 50%;
-        box-shadow:
-          0 0 60px #f6d365,
-          0 0 120px #f6d365;
-        z-index: 1;
-      }
+      /* ================= SAO ================= */
 
       .star {
         position: absolute;
+
+        width: 3px;
+        height: 3px;
+
+        border-radius: 50%;
+
         background: white;
-        border-radius: 50%;
-        box-shadow: 0 0 10px white;
-        animation: twinkle linear infinite;
-        z-index: 0;
+
+        box-shadow:
+          0 0 8px white,
+          0 0 15px white;
+
+        animation: starBlink 1.5s infinite alternate;
       }
 
-      .sky-lantern {
+      @keyframes starBlink {
+        from {
+          opacity: 0.2;
+          transform: scale(0.5);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1.5);
+        }
+      }
+
+      /* ================= TRĂNG ================= */
+
+      .moon {
         position: absolute;
-        bottom: -100px;
-        width: 30px;
-        height: 45px;
-        background: linear-gradient(180deg, #ff7e5f, #feb47b);
-        border-radius: 15px 15px 5px 5px;
-        box-shadow: 0 0 20px #ff7e5f;
-        z-index: 2;
-        opacity: 0.9;
+
+        top: 65px;
+        right: 10%;
+
+        width: 210px;
+        height: 210px;
+
+        border-radius: 50%;
+
+        background: radial-gradient(
+          circle at 30% 30%,
+          #fffde1,
+          #fff2a0 50%,
+          #ffd64a 100%
+        );
+
+        box-shadow:
+          0 0 30px #fff5a8,
+          0 0 70px #ffe066,
+          0 0 130px rgba(255, 215, 80, 0.5),
+          0 0 200px rgba(255, 215, 80, 0.2);
+
+        animation: moonGlow 3s infinite alternate;
       }
 
-      .sky-lantern::after {
+      @keyframes moonGlow {
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.04);
+        }
+      }
+
+      /* ================= HỐ TRÊN MẶT TRĂNG ================= */
+
+      .moon span {
+        position: absolute;
+
+        background: rgba(200, 160, 50, 0.15);
+
+        border-radius: 50%;
+      }
+
+      .crater1 {
+        width: 35px;
+        height: 35px;
+
+        top: 45px;
+        left: 55px;
+      }
+
+      .crater2 {
+        width: 25px;
+        height: 25px;
+
+        top: 110px;
+        left: 125px;
+      }
+
+      .crater3 {
+        width: 18px;
+        height: 18px;
+
+        top: 135px;
+        left: 65px;
+      }
+
+      .crater4 {
+        width: 15px;
+        height: 15px;
+
+        top: 80px;
+        left: 145px;
+      }
+
+      /* ================= MÂY ================= */
+
+      .cloud {
+        position: absolute;
+
+        width: 200px;
+        height: 55px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border-radius: 50px;
+
+        filter: blur(2px);
+
+        animation: cloudMove 30s linear infinite;
+      }
+
+      .cloud:before,
+      .cloud:after {
         content: "";
+
         position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 8px;
-        height: 10px;
-        background: #ffea00;
+
+        background: inherit;
+
         border-radius: 50%;
-        box-shadow: 0 0 10px #ffea00;
       }
 
-      /* --- BỐ CỤC CHÍNH (UI GLASSMORPHISM) --- */
-      .app-container {
+      .cloud:before {
+        width: 75px;
+        height: 75px;
+
+        left: 35px;
+        bottom: 10px;
+      }
+
+      .cloud:after {
+        width: 90px;
+        height: 90px;
+
+        right: 25px;
+        bottom: 5px;
+      }
+
+      .cloud1 {
+        top: 180px;
+        left: -250px;
+      }
+
+      .cloud2 {
+        top: 350px;
+        left: -500px;
+
+        animation-delay: 8s;
+
+        transform: scale(0.7);
+      }
+
+      @keyframes cloudMove {
+        from {
+          transform: translateX(-300px);
+        }
+
+        to {
+          transform: translateX(calc(100vw + 500px));
+        }
+      }
+
+      /* ================= ĐÈN LỒNG ================= */
+
+      .lantern {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 800px;
-        height: 80vh;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 1.5s ease 0.5s;
+
+        width: 55px;
+        height: 75px;
+
+        border-radius: 45% 45% 50% 50%;
+
+        background: linear-gradient(90deg, #8d0016, #ff3344, #8d0016);
+
+        box-shadow:
+          0 0 20px #ff3344,
+          0 0 50px rgba(255, 40, 60, 0.5);
+
+        animation: lanternFloat 4s ease-in-out infinite;
       }
 
-      .app-container.show {
-        opacity: 1;
-        pointer-events: auto;
+      .lantern:after {
+        content: "🏮";
+
+        position: absolute;
+
+        top: 13px;
+        left: 9px;
+
+        font-size: 35px;
+
+        filter: drop-shadow(0 0 10px #ffd83d);
       }
 
-      /* --- THANH ĐIỀU HƯỚNG --- */
-      header {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        padding: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      .lantern1 {
+        left: 6%;
+        top: 25%;
       }
 
-      .tab-btn {
-        background: transparent;
-        border: 2px solid transparent;
-        color: #fff;
-        font-size: 1.1rem;
-        font-weight: 600;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 30px;
-        transition: all 0.3s ease;
-        font-family: inherit;
+      .lantern2 {
+        left: 20%;
+        top: 60%;
+
+        transform: scale(0.7);
+
+        animation-delay: 1s;
       }
 
-      .tab-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
+      .lantern3 {
+        right: 20%;
+        top: 22%;
+
+        transform: scale(0.8);
+
+        animation-delay: 2s;
       }
 
-      .tab-btn.active {
-        border-color: var(--primary);
-        color: var(--primary);
-        box-shadow: 0 0 15px rgba(246, 211, 101, 0.4);
+      .lantern4 {
+        right: 7%;
+        top: 58%;
+
+        transform: scale(0.65);
+
+        animation-delay: 3s;
       }
 
-      /* --- NỘI DUNG CÁC TRANG --- */
-      .content-area {
-        flex: 1;
-        position: relative;
-        overflow: hidden;
-        padding: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+      @keyframes lanternFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-4deg);
+        }
+
+        50% {
+          transform: translateY(-35px) rotate(4deg);
+        }
       }
+
+      /* ================= KHUNG TRANG ================= */
 
       .page {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) translateY(50px);
-        width: 100%;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        padding: 30px 15px;
       }
 
-      .page.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translate(-50%, -50%) translateY(0);
-      }
-      /* Chỉnh style riêng từng trang */
-      .title {
-        font-family: "Dancing Script", cursive;
-        font-size: 4rem;
-        color: var(--primary);
-        text-shadow: 0 0 20px var(--primary);
-        margin-bottom: 20px;
+      /* ================= CARD ================= */
+
+      .card {
+        width: min(900px, 95%);
+
+        padding: 50px 35px;
+
+        text-align: center;
+
+        border-radius: 30px;
+
+        background: rgba(12, 8, 42, 0.78);
+
+        backdrop-filter: blur(15px);
+
+        border: 1px solid rgba(255, 220, 100, 0.3);
+
+        box-shadow:
+          0 0 40px rgba(255, 190, 30, 0.15),
+          inset 0 0 40px rgba(255, 255, 255, 0.03);
+
+        animation: cardAppear 1.2s ease;
       }
 
-      .text-content {
-        font-size: 1.3rem;
+      @keyframes cardAppear {
+        from {
+          opacity: 0;
+
+          transform: translateY(50px) scale(0.9);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* ================= TIÊU ĐỀ ================= */
+
+      h1 {
+        font-size: clamp(40px, 8vw, 80px);
+
+        line-height: 1.05;
+
+        background: linear-gradient(
+          90deg,
+          #fff5ad,
+          #ffd43b,
+          #fff,
+          #ffd43b,
+          #fff5ad
+        );
+
+        background-size: 300%;
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+
+        animation: titleMove 4s linear infinite;
+
+        filter: drop-shadow(0 0 15px rgba(255, 210, 60, 0.7));
+      }
+
+      @keyframes titleMove {
+        from {
+          background-position: 0%;
+        }
+
+        to {
+          background-position: 300%;
+        }
+      }
+
+      /* ================= PHỤ ĐỀ ================= */
+
+      .subtitle {
+        margin-top: 25px;
+
+        font-size: 19px;
+
         line-height: 1.8;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+        color: #ffeeb0;
       }
 
-      .typing-text {
-        display: inline-block;
-        border-right: 3px solid var(--primary);
-        white-space: pre-wrap;
-        text-align: left;
-        margin: 0 auto;
-        max-width: 600px;
+      /* ================= ĐƯỜNG NGĂN ================= */
+
+      .divider {
+        width: 220px;
+
+        height: 3px;
+
+        margin: 30px auto;
+
+        background: linear-gradient(90deg, transparent, #ffd43b, transparent);
+
+        box-shadow: 0 0 15px #ffd43b;
       }
 
-      .action-btn {
-        margin-top: 30px;
-        padding: 12px 30px;
-        font-size: 1.2rem;
+      /* ================= MÀN HÌNH ================= */
+
+      .screen {
+        display: none;
+      }
+
+      .screen.active {
+        display: block;
+
+        animation: screenIn 0.8s ease;
+      }
+
+      @keyframes screenIn {
+        from {
+          opacity: 0;
+
+          transform: scale(0.85) translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* ================= NÚT ================= */
+
+      .buttons {
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+        margin-top: 35px;
+      }
+
+      button {
         border: none;
-        border-radius: 25px;
-        background: linear-gradient(45deg, #f6d365, #fda085);
-        color: #fff;
-        font-weight: bold;
+
+        padding: 15px 25px;
+
+        border-radius: 50px;
+
         cursor: pointer;
-        box-shadow: 0 5px 15px rgba(253, 160, 133, 0.5);
-        transition: transform 0.2s;
+
+        font-size: 16px;
+
+        font-weight: bold;
+
+        color: #321900;
+
+        background: linear-gradient(135deg, #fff0a0, #ffc928);
+
+        box-shadow: 0 0 20px rgba(255, 210, 60, 0.35);
+
+        transition: 0.3s;
       }
 
-      .action-btn:hover {
-        transform: scale(1.05);
+      button:hover {
+        transform: translateY(-5px) scale(1.07);
+
+        box-shadow: 0 0 40px rgba(255, 210, 60, 0.8);
       }
 
-      /* --- KEYFRAMES --- */
-      @keyframes pulse {
-        0% {
+      button:active {
+        transform: scale(0.9);
+      }
+
+      /* ================= LỜI CHÚC ================= */
+
+      .wish {
+        margin: 15px auto;
+
+        max-width: 700px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        background: rgba(255, 255, 255, 0.05);
+
+        border: 1px solid rgba(255, 220, 100, 0.15);
+
+        line-height: 1.7;
+
+        transition: 0.3s;
+      }
+
+      .wish:hover {
+        transform: translateX(10px) scale(1.02);
+
+        background: rgba(255, 210, 70, 0.1);
+
+        box-shadow: 0 0 25px rgba(255, 210, 70, 0.1);
+      }
+
+      /* ================= HỘP QUÀ ================= */
+
+      .gift {
+        font-size: 110px;
+
+        cursor: pointer;
+
+        display: inline-block;
+
+        animation: giftShake 1.3s infinite;
+      }
+
+      @keyframes giftShake {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+
+        25% {
+          transform: rotate(-10deg);
+        }
+
+        75% {
+          transform: rotate(10deg);
+        }
+      }
+
+      .secret {
+        display: none;
+
+        margin-top: 25px;
+
+        font-size: 21px;
+
+        line-height: 1.8;
+
+        color: #ffe989;
+      }
+
+      .secret.show {
+        display: block;
+
+        animation: secretIn 1s ease;
+      }
+
+      @keyframes secretIn {
+        from {
+          opacity: 0;
+
+          transform: scale(0.3);
+        }
+
+        to {
+          opacity: 1;
+
           transform: scale(1);
-          box-shadow: 0 0 30px #ff9966;
-        }
-        100% {
-          transform: scale(1.1);
-          box-shadow: 0 0 60px #ff5e62;
         }
       }
 
-      @keyframes blink {
-        0%,
-        100% {
+      /* ================= PHÁO HOA ================= */
+
+      .firework {
+        position: fixed;
+
+        width: 5px;
+        height: 5px;
+
+        border-radius: 50%;
+
+        background: white;
+
+        pointer-events: none;
+
+        z-index: 100;
+
+        box-shadow:
+          0 0 8px white,
+          0 0 15px white;
+      }
+
+      /* ================= SPARKLE ================= */
+
+      .sparkle {
+        position: fixed;
+
+        pointer-events: none;
+
+        z-index: 500;
+
+        font-size: 20px;
+
+        animation: sparkleOut 1s forwards;
+      }
+
+      @keyframes sparkleOut {
+        from {
           opacity: 1;
+
+          transform: scale(1) translateY(0);
         }
-        50% {
-          opacity: 0.4;
+
+        to {
+          opacity: 0;
+
+          transform: scale(2) translateY(-60px);
         }
       }
 
-      @keyframes twinkle {
-        0% {
-          opacity: 0;
-          transform: scale(0.5);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(0.5);
-        }
+      /* ================= NÚT NHẠC ================= */
+
+      .music {
+        position: fixed;
+
+        right: 20px;
+
+        bottom: 20px;
+
+        z-index: 1000;
       }
 
-      @keyframes floatUp {
-        0% {
-          transform: translateY(0) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-120vh) rotate(20deg);
-          opacity: 0;
-        }
+      /* ================= FOOTER ================= */
+
+      .footer {
+        margin-top: 30px;
+
+        color: #aaa;
+
+        font-size: 14px;
       }
 
-      @keyframes sway {
-        0%,
-        100% {
-          margin-left: 0;
+      /* ================= MOBILE ================= */
+
+      @media (max-width: 600px) {
+        .moon {
+          width: 120px;
+          height: 120px;
+
+          right: 6%;
+          top: 50px;
         }
-        50% {
-          margin-left: 50px;
+
+        .card {
+          padding: 35px 20px;
+        }
+
+        .subtitle {
+          font-size: 16px;
+        }
+
+        .lantern {
+          transform: scale(0.6);
         }
       }
     </style>
   </head>
+
   <body>
-    <!-- Màn hình chào (Bắt buộc để trình duyệt cho phép tự động phát nhạc) -->
-    <div id="welcome-screen" onclick="startFestival()">
-      <div class="lantern-btn"></div>
-      <p>Chạm vào lồng đèn để đón Trung Thu</p>
+    <!-- ================= BẦU TRỜI ================= -->
+
+    <div id="sky">
+      <div class="moon">
+        <span class="crater1"></span>
+        <span class="crater2"></span>
+        <span class="crater3"></span>
+        <span class="crater4"></span>
+      </div>
+
+      <div class="cloud cloud1"></div>
+
+      <div class="cloud cloud2"></div>
+
+      <div class="lantern lantern1"></div>
+
+      <div class="lantern lantern2"></div>
+
+      <div class="lantern lantern3"></div>
+
+      <div class="lantern lantern4"></div>
     </div>
 
-    <!-- Nhạc nền (Link nhạc không bản quyền, bạn có thể thay thế bằng link mp3 của bạn) -->
-    <audio id="bg-music" loop>
+    <!-- ================= NỘI DUNG ================= -->
+
+    <section class="page">
+      <div class="card">
+        <!-- ===== TRANG 1 ===== -->
+
+        <div id="screen1" class="screen active">
+          <div style="font-size: 55px">🌕🏮✨</div>
+
+          <h1>
+            CHÚC FEN<br />
+            TRUNG THU
+          </h1>
+
+          <div class="divider"></div>
+
+          <p class="subtitle">
+            Một đêm trăng đẹp lại đến... 🌙
+
+            <br /><br />
+
+            Không cần điều gì quá to tát,
+
+            <br />
+
+            chỉ cần fen vui,
+
+            <br />
+
+            cười thật nhiều
+
+            <br />
+
+            và có một mùa Trung Thu thật đáng nhớ! ❤️
+          </p>
+
+          <div class="buttons">
+            <button onclick="nextScreen(2)">🏮 Bắt đầu</button>
+          </div>
+        </div>
+
+        <!-- ===== TRANG 2 ===== -->
+
+        <div id="screen2" class="screen">
+          <div style="font-size: 65px">🌕🐇</div>
+
+          <h1>ĐÊM TRĂNG CỦA FEN</h1>
+
+          <div class="divider"></div>
+
+          <p class="subtitle">
+            Trăng hôm nay có thể rất sáng...
+
+            <br />
+
+            nhưng mong rằng
+
+            <br />
+
+            nụ cười của fen
+
+            <br />
+
+            còn sáng hơn cả ánh trăng. ✨
+
+            <br /><br />
+
+            Bánh Trung Thu thì có thể chia nhau,
+
+            <br />
+
+            còn niềm vui thì...
+
+            <br />
+
+            <b>cứ chia thật nhiều nhé! 😆</b>
+          </p>
+
+          <div class="buttons">
+            <button onclick="nextScreen(1)">⬅ Quay lại</button>
+
+            <button onclick="nextScreen(3)">Tiếp tục ➜</button>
+          </div>
+        </div>
+
+        <!-- ===== TRANG 3 ===== -->
+
+        <div id="screen3" class="screen">
+          <div style="font-size: 60px">💌</div>
+
+          <h1>GỬI FEN VÀI LỜI</h1>
+
+          <div class="divider"></div>
+
+          <div class="wish">
+            🌕 Chúc fen một mùa Trung Thu
+
+            <b>vui vẻ, bình an</b>
+
+            và thật nhiều tiếng cười.
+          </div>
+
+          <div class="wish">
+            🏮 Chúc những điều tốt đẹp cứ từ từ tìm đến fen, đúng lúc và đúng
+            cách.
+          </div>
+
+          <div class="wish">
+            🥮 Chúc fen ăn mãi không béo :ngược lại thì hay hơn:)), ngủ không
+            muộn, học không áp lực và ngày nào cũng có chuyện vui. 😂
+          </div>
+
+          <div class="wish">
+            ✨ Mong rằng những điều fen đang cố gắng hôm nay sẽ trở thành những
+            điều khiến fen tự hào trong tương lai.
+          </div>
+
+          <div class="buttons">
+            <button onclick="nextScreen(2)">⬅ Quay lại</button>
+
+            <button onclick="nextScreen(4)">🎁 Có quà nè</button>
+          </div>
+        </div>
+
+        <!-- ===== TRANG 4 ===== -->
+
+        <div id="screen4" class="screen">
+          <div style="font-size: 30px">🎁✨🎁</div>
+
+          <h1>MỞ QUÀ ĐI FEN</h1>
+
+          <div class="divider"></div>
+
+          <p class="subtitle">
+            Có một món quà nhỏ dành riêng cho fen...
+
+            <br />
+
+            Chạm vào hộp quà nhé! 👇
+          </p>
+
+          <div class="gift" onclick="openGift()">🎁</div>
+
+          <div id="secret" class="secret">
+            🌕✨🏮✨🌕
+
+            <br /><br />
+
+            <b> CHÚC FEN TRUNG THU VUI VẺ! ❤️ </b>
+
+            <br /><br />
+
+            Mong fen luôn vui,
+
+            <br />
+
+            luôn giữ được nụ cười,
+
+            <br />
+
+            gặp thật nhiều may mắn
+
+            <br />
+
+            và có thật nhiều khoảnh khắc
+
+            <br />
+
+            đáng nhớ trong kỳ quân sự này nhé:)).
+
+            <br /><br />
+
+            🥮 Ăn bánh ngon nhé!
+
+            <br />
+
+            🏮 Đi chơi vui nhé!
+
+            <br />
+
+            🌕 Ngắm trăng thật đẹp nhé!
+          </div>
+
+          <div class="buttons">
+            <button onclick="nextScreen(3)">⬅ Quay lại</button>
+
+            <button onclick="fireworkShow()">🎆 BẮN PHÁO HOA</button>
+
+            <button onclick="nextScreen(5)">➜ Tiếp tục</button>
+          </div>
+        </div>
+
+        <!-- ===== TRANG 5 ===== -->
+
+        <div id="screen5" class="screen">
+          <div style="font-size: 65px">🌌🎆🌕</div>
+
+          <h1>
+            CHÚC FEN
+            <br />
+            LUÔN RỰC RỠ!
+          </h1>
+
+          <div class="divider"></div>
+
+          <p class="subtitle">
+            Đêm Trung Thu rồi cũng sẽ qua...
+
+            <br /><br />
+
+            Nhưng hy vọng những điều tốt đẹp trong đêm nay sẽ ở lại thật lâu.
+
+            <br /><br />
+
+            Chúc fen:
+
+            <br />
+
+            ❤️ Luôn vui
+
+            <br />
+
+            ✨ Luôn may mắn
+
+            <br />
+
+            🏮 Luôn có người bên cạnh
+
+            <br />
+
+            🌕 Và luôn có những ngày thật đáng nhớ.
+
+            <br /><br />
+
+            <b> TRUNG THU VUI VẺ NHÉ FEN! 🥮🏮🌕 </b>
+          </p>
+
+          <div style="font-size: 45px; margin: 30px 0">🌕 🏮 🥮 🐇 🎆 ✨</div>
+
+          <div class="buttons">
+            <button onclick="nextScreen(1)">🔄 Xem lại</button>
+
+            <button onclick="megaFirework()">🎆 ĐẠI PHÁO HOA</button>
+          </div>
+
+          <div class="footer">Made with ❤️ dành tặng fen</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NHẠC ================= -->
+
+    <div class="music">
+      <button onclick="toggleMusic()" id="musicBtn">🎵 Bật nhạc</button>
+    </div>
+
+    <audio id="music" loop>
       <source
-        src="https://assets.mixkit.co/music/preview/mixkit-traditional-asian-tranquility-275.mp3"
+        src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946a8c6c24.mp3"
         type="audio/mpeg"
       />
     </audio>
 
-    <!-- Bầu trời đêm -->
-    <div class="moon"></div>
-    <div id="stars-container"></div>
-    <div id="lanterns-container"></div>
+    <script>
+      /* ================= TẠO SAO ================= */
 
-    <!-- Bố cục ứng dụng chính -->
-    <div class="app-container" id="app">
-      <header>
-        <button class="tab-btn active" onclick="switchTab('trang1', this)">
-          Đêm Rằm
-        </button>
-        <button class="tab-btn" onclick="switchTab('trang2', this)">Lời Chúc</button>
-            <button class="tab-btn" onclick="switchTab('trang3', this)">Thả Đèn</button>
-        </header>
+      for (let i = 0; i < 180; i++) {
+        let star = document.createElement("div");
 
-        <div class="content-area">
-            
-            <!-- Trang 1: Chào mừng -->
-            <div id="trang1" class="page active">
-                <h1 class="title">Tết Trung Thu</h1>
-                <p class="text-content">
-                    Ánh trăng sáng tỏ, gió thu nhè nhẹ.<br>
-                    Một mùa trăng tròn nữa lại về...<br>
-                    Cảm ơn vì đã luôn là một người bạn tuyệt vời trong hành trình của tôi.
-                </p>
-            </div>
+        star.className = "star";
 
-            <!-- Trang 2: Lời chúc (Hiệu ứng gõ chữ sẽ được JS tiêm vào đây) -->
-            <div id="trang2" class="page">
-                <h1 class="title">Gửi Bạn Hiền</h1>
-                <div class="text-content typing-text" id="typewriter-text"></div>
-            </div>
+        star.style.left = Math.random() * 100 + "%";
 
-            <!-- Trang 3: Tương tác thả đèn -->
-            <div id="trang3" class="page">
-                <h1 class="title">Gửi Gắm Ước Nguyện</h1>
-                <p class="text-content">Nhấn nút bên dưới để thả một chiếc đèn trời, mang theo những muộn phiền bay đi m
-      </header>
-    </div>
+        star.style.top = Math.random() * 100 + "%";
+
+        star.style.animationDelay = Math.random() * 3 + "s";
+
+        document.getElementById("sky").appendChild(star);
+      }
+
+      /* ================= CHUYỂN TRANG ================= */
+
+      function nextScreen(number) {
+        document.querySelectorAll(".screen").forEach(function (screen) {
+          screen.classList.remove("active");
+        });
+
+        document.getElementById("screen" + number).classList.add("active");
+
+        createSparkles(window.innerWidth / 2, window.innerHeight / 2);
+      }
+
+      /* ================= SPARKLE ================= */
+
+      function createSparkles(x, y) {
+        for (let i = 0; i < 25; i++) {
+          let sparkle = document.createElement("div");
+
+          sparkle.className = "sparkle";
+
+          sparkle.innerHTML = ["✨", "⭐", "🌟", "💫", "🏮"][
+            Math.floor(Math.random() * 5)
+          ];
+
+          sparkle.style.left = x + (Math.random() * 200 - 100) + "px";
+
+          sparkle.style.top = y + (Math.random() * 150 - 75) + "px";
+
+          document.body.appendChild(sparkle);
+
+          setTimeout(() => {
+            sparkle.remove();
+          }, 1000);
+        }
+      }
+
+      /* ================= CLICK EFFECT ================= */
+
+      document.addEventListener("click", function (e) {
+        for (let i = 0; i < 8; i++) {
+          let sparkle = document.createElement("div");
+
+          sparkle.className = "sparkle";
+
+          sparkle.innerHTML = ["✨", "⭐", "🌟", "💫"][
+            Math.floor(Math.random() * 4)
+          ];
+
+          sparkle.style.left = e.clientX + (Math.random() * 60 - 30) + "px";
+
+          sparkle.style.top = e.clientY + (Math.random() * 60 - 30) + "px";
+
+          document.body.appendChild(sparkle);
+
+          setTimeout(() => {
+            sparkle.remove();
+          }, 1000);
+        }
+      });
+
+      /* ================= PHÁO HOA ================= */
+
+      function createFirework(x, y) {
+        /* HẠT PHÁO HOA */
+
+        for (let i = 0; i < 90; i++) {
+          let particle = document.createElement("div");
+
+          particle.className = "firework";
+
+          particle.style.left = x + "px";
+
+          particle.style.top = y + "px";
+
+          let angle = Math.random() * Math.PI * 2;
+
+          let distance = 70 + Math.random() * 260;
+
+          let dx = Math.cos(angle) * distance;
+
+          let dy = Math.sin(angle) * distance;
+
+          let size = 2 + Math.random() * 5;
+
+          particle.style.width = size + "px";
+
+          particle.style.height = size + "px";
+
+          particle.animate(
+            [
+              {
+                transform: "translate(0,0) scale(1)",
+
+                opacity: 1,
+              },
+
+              {
+                transform: `translate(${dx}px,${dy}px) scale(.1)`,
+
+                opacity: 0,
+              },
+            ],
+
+            {
+              duration: 900 + Math.random() * 1200,
+
+              easing: "cubic-bezier(.1,.7,.2,1)",
+            },
+          );
+
+          document.body.appendChild(particle);
+
+          setTimeout(() => {
+            particle.remove();
+          }, 2200);
+        }
+
+        /* TIA SÁNG */
+
+        for (let i = 0; i < 18; i++) {
+          let spark = document.createElement("div");
+
+          spark.innerHTML = "✨";
+
+          spark.style.position = "fixed";
+
+          spark.style.left = x + "px";
+
+          spark.style.top = y + "px";
+
+          spark.style.fontSize = 12 + Math.random() * 22 + "px";
+
+          spark.style.pointerEvents = "none";
+
+          spark.style.zIndex = "300";
+
+          let angle = Math.random() * Math.PI * 2;
+
+          let distance = 50 + Math.random() * 130;
+
+          spark.animate(
+            [
+              {
+                transform: "translate(-50%,-50%) scale(1)",
+
+                opacity: 1,
+              },
+
+              {
+                transform: `translate(
+                        ${Math.cos(angle) * distance}px,
+                        ${Math.sin(angle) * distance}px
+                    ) scale(0)`,
+
+                opacity: 0,
+              },
+            ],
+
+            {
+              duration: 700 + Math.random() * 700,
+
+              easing: "ease-out",
+            },
+          );
+
+          document.body.appendChild(spark);
+
+          setTimeout(() => {
+            spark.remove();
+          }, 1500);
+        }
+      }
+
+      /* ================= BẮN NHIỀU PHÁO ================= */
+
+      function fireworkShow() {
+        for (let i = 0; i < 45; i++) {
+          setTimeout(() => {
+            createFirework(
+              50 + Math.random() * (window.innerWidth - 100),
+
+              70 + Math.random() * (window.innerHeight * 0.55),
+            );
+          }, i * 90);
+        }
+      }
+
+      /* ================= ĐẠI PHÁO HOA ================= */
+
+      function megaFirework() {
+        for (let i = 0; i < 150; i++) {
+          setTimeout(() => {
+            createFirework(
+              40 + Math.random() * (window.innerWidth - 80),
+
+              60 + Math.random() * (window.innerHeight * 0.6),
+            );
+          }, i * 55);
+        }
+      }
+
+      /* ================= MỞ QUÀ ================= */
+
+      function openGift() {
+        document.getElementById("secret").classList.add("show");
+
+        megaFirework();
+
+        createManySparkles();
+      }
+
+      /* ================= NHIỀU SPARKLE ================= */
+
+      function createManySparkles() {
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => {
+            createSparkles(
+              Math.random() * window.innerWidth,
+
+              Math.random() * window.innerHeight,
+            );
+          }, i * 25);
+        }
+      }
+
+      /* ================= PHÁO HOA TỰ ĐỘNG ================= */
+
+      setInterval(() => {
+        let soPhao = 2 + Math.floor(Math.random() * 4);
+
+        for (let i = 0; i < soPhao; i++) {
+          setTimeout(() => {
+            createFirework(
+              50 + Math.random() * (window.innerWidth - 100),
+
+              70 + Math.random() * (window.innerHeight * 0.5),
+            );
+          }, i * 180);
+        }
+      }, 1200);
+
+      /* ================= NHẠC ================= */
+
+      let music = document.getElementById("music");
+
+      let playing = false;
+
+      function toggleMusic() {
+        if (!playing) {
+          music.play();
+
+          playing = true;
+
+          document.getElementById("musicBtn").innerHTML = "🔇 Tắt nhạc";
+        } else {
+          music.pause();
+
+          playing = false;
+
+          document.getElementById("musicBtn").innerHTML = "🎵 Bật nhạc";
+        }
+      }
+    </script>
   </body>
 </html>
+```
