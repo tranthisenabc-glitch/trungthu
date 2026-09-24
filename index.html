@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gửi fen - Chúc Mừng Trung Thu</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;600&display=swap");
+
+      :root {
+        --primary: #f6d365;
+        --bg-gradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Quicksand", sans-serif;
+        background: var(--bg-gradient);
+        height: 100vh;
+        overflow: hidden;
+        color: #fff;
+        position: relative;
+      }
+
+      /* --- MÀN HÌNH CHỜ (ĐỂ KÍCH HOẠT NHẠC) --- */
+      #welcome-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        cursor: pointer;
+        transition: opacity 1s ease;
+      }
+
+      .lantern-btn {
+        width: 80px;
+        height: 100px;
+        background: linear-gradient(180deg, #ff5e62, #ff9966);
+        border-radius: 40px 40px 10px 10px;
+        position: relative;
+        box-shadow: 0 0 50px #ff9966;
+        animation: pulse 1.5s infinite alternate;
+      }
+
+      .lantern-btn::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background: #ffcc00;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #fff;
+      }
+
+      #welcome-screen p {
+        margin-top: 30px;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: blink 2s infinite;
+      }
+
+      /* --- BACKGROUND HIỆU ỨNG --- */
+      .moon {
+        position: absolute;
+        top: 50px;
+        right: 100px;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, #fff, #f6d365);
+        border-radius: 50%;
+        box-shadow:
+          0 0 60px #f6d365,
+          0 0 120px #f6d365;
+        z-index: 1;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 10px white;
+        animation: twinkle linear infinite;
+        z-index: 0;
+      }
+
+      .sky-lantern {
+        position: absolute;
+        bottom: -100px;
+        width: 30px;
+        height: 45px;
+        background: linear-gradient(180deg, #ff7e5f, #feb47b);
+        border-radius: 15px 15px 5px 5px;
+        box-shadow: 0 0 20px #ff7e5f;
+        z-index: 2;
+        opacity: 0.9;
+      }
+
+      .sky-lantern::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 10px;
+        background: #ffea00;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #ffea00;
+      }
+
+      /* --- BỐ CỤC CHÍNH (UI GLASSMORPHISM) --- */
+      .app-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 800px;
+        height: 80vh;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1.5s ease 0.5s;
+      }
+
+      .app-container.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* --- THANH ĐIỀU HƯỚNG --- */
+      header {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .tab-btn {
+        background: transparent;
+        border: 2px solid transparent;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .tab-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .tab-btn.active {
+        border-color: var(--primary);
+        color: var(--primary);
+        box-shadow: 0 0 15px rgba(246, 211, 101, 0.4);
+      }
+
+      /* --- NỘI DUNG CÁC TRANG --- */
+      .content-area {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        padding: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .page {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateY(50px);
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .page.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, -50%) translateY(0);
+      }
+      /* Chỉnh style riêng từng trang */
+      .title {
+        font-family: "Dancing Script", cursive;
+        font-size: 4rem;
+        color: var(--primary);
+        text-shadow: 0 0 20px var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .text-content {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      .typing-text {
+        display: inline-block;
+        border-right: 3px solid var(--primary);
+        white-space: pre-wrap;
+        text-align: left;
+        margin: 0 auto;
+        max-width: 600px;
+      }
+
+      .action-btn {
+        margin-top: 30px;
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 25px;
+        background: linear-gradient(45deg, #f6d365, #fda085);
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(253, 160, 133, 0.5);
+        transition: transform 0.2s;
+      }
+
+      .action-btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* --- KEYFRAMES --- */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 30px #ff9966;
+        }
+        100% {
+          transform: scale(1.1);
+          box-shadow: 0 0 60px #ff5e62;
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh) rotate(20deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes sway {
+        0%,
+        100% {
+          margin-left: 0;
+        }
+        50% {
+          margin-left: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Màn hình chào (Bắt buộc để trình duyệt cho phép tự động phát nhạc) -->
+    <div id="welcome-screen" onclick="startFestival()">
+      <div class="lantern-btn"></div>
+      <p>Chạm vào lồng đèn để đón Trung Thu</p>
+    </div>
+
+    <!-- Nhạc nền (Link nhạc không bản quyền, bạn có thể thay thế bằng link mp3 của bạn) -->
+    <audio id="bg-music" loop>
+      <source
+        src="https://assets.mixkit.co/music/preview/mixkit-traditional-asian-tranquility-275.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <!-- Bầu trời đêm -->
+    <div class="moon"></div>
+    <div id="stars-container"></div>
+    <div id="lanterns-container"></div>
+
+    <!-- Bố cục ứng dụng chính -->
+    <div class="app-container" id="app">
+      <header>
+        <button class="tab-btn active" onclick="switchTab('trang1', this)">
+          Đêm Rằm
+        </button>
+        <button class="tab-btn" onclick="switchTab('trang2', this)">Lời Chúc</button>
+            <button class="tab-btn" onclick="switchTab('trang3', this)">Thả Đèn</button>
+        </header>
+
+        <div class="content-area">
+            
+            <!-- Trang 1: Chào mừng -->
+            <div id="trang1" class="page active">
+                <h1 class="title">Tết Trung Thu</h1>
+                <p class="text-content">
+                    Ánh trăng sáng tỏ, gió thu nhè nhẹ.<br>
+                    Một mùa trăng tròn nữa lại về...<br>
+                    Cảm ơn vì đã luôn là một người bạn tuyệt vời trong hành trình của tôi.
+                </p>
+            </div>
+
+            <!-- Trang 2: Lời chúc (Hiệu ứng gõ chữ sẽ được JS tiêm vào đây) -->
+            <div id="trang2" class="page">
+                <h1 class="title">Gửi Bạn Hiền</h1>
+                <div class="text-content typing-text" id="typewriter-text"></div>
+            </div>
+
+            <!-- Trang 3: Tương tác thả đèn -->
+            <div id="trang3" class="page">
+                <h1 class="title">Gửi Gắm Ước Nguyện</h1>
+                <p class="text-content">Nhấn nút bên dưới để thả một chiếc đèn trời, mang theo những muộn phiền bay đi m
+      </header>
+    </div>
+  </body>
+</html>
